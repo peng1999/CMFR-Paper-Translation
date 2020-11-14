@@ -112,7 +112,7 @@
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{Controllable Multi-Interest Framework for Recommendation}
+\title{可控的多兴趣推荐框架}
 % \title{Controllable Multi-Interest Sequential Recommendation}
 
 \author[Y. Cen, J. Zhang, X. Zou, C. Zhou, H. Yang and J. Tang]{
@@ -150,16 +150,16 @@
 %% article.
 \begin{abstract}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-\footnotetext[1]{Hongxia Yang and Jie Tang are the corresponding authors.}
+\footnotetext[1]{Hongxia Yang 和 Jie Tang 是通讯作者.}
 \renewcommand{\thefootnote}{\arabic{footnote}}
 
-中文
-Recently, neural networks have been widely used in e-commerce recommender systems, owing to the rapid development of deep learning. 
-We formalize the recommender system as a sequential recommendation problem, intending to predict the next items that the user might be interacted with. 
-Recent works usually give an overall embedding from a user's behavior sequence. However, a unified user embedding cannot reflect the user's multiple interests during a period. 
-In this paper, we propose a novel \textbf{\textit{co}}ntrollable \textbf{\textit{m}}ulti-\textbf{\textit{i}}nterest framework for the sequential \textbf{\textit{rec}}ommendation, called \model. Our multi-interest module captures multiple interests from user behavior sequences, which can be exploited for retrieving candidate items from the large-scale item pool. These items are then fed into an aggregation module to obtain the overall recommendation. The aggregation module leverages a controllable factor to balance the recommendation accuracy and diversity. 
-We conduct experiments for the sequential recommendation on two real-world datasets, Amazon and Taobao. Experimental results demonstrate that our framework achieves significant improvements over state-of-the-art models\footnote{Code is available at \url{https://github.com/THUDM/ComiRec}}. 
-Our framework has also been successfully deployed on the offline Alibaba distributed cloud platform. %Results on the billion-scale industrial dataset further confirm the effectiveness and efficiency of CapsRec in practice.
+
+最近，由于深度学习的快速发展，神经网络已广泛用于电子商务推荐系统。
+我们将推荐器系统形式化为顺序推荐问题，旨在预测与用户进行交互的下一个项目。
+近期的研究工作通常会根据用户的行为顺序进行整体嵌入。但是，统一的用户嵌入无法反映该用户在一段时间内的多重兴趣。
+在本文中，我们为顺序推荐提出了一种新颖的可控多兴趣框架（\textbf{\textit{co}}ntrollable \textbf{\textit{m}}ulti-\textbf{\textit{i}}nterest framework for the sequential \textbf{\textit{rec}}ommendation），称为 \model。我们的多兴趣模块从用户行为序列中捕获多个兴趣，可将其用于从大型项目池中检索候选项目。然后将这些项目输入汇总模块以获取总体推荐。聚合模块利用可控因素来平衡推荐准确性和多样性。
+我们针对两个现实世界的数据集，亚马逊和淘宝，进行了顺序推荐的实验。实验结果表明，我们的框架相对于时下最先进的模型\footnote{代码可以在 \url{https://github.com/THUDM/ComiRec} 找到}有了显着改进。
+我们的框架也已成功部署在离线阿里巴巴分布式云平台上。
 \end{abstract}
 
 %%
@@ -181,32 +181,32 @@ Our framework has also been successfully deployed on the offline Alibaba distrib
 </ccs2012>
 \end{CCSXML}
 
-\ccsdesc[500]{Information systems~Recommender systems}
-\ccsdesc[500]{Computing methodologies~Neural networks}
+\ccsdesc[500]{信息系统~推荐系统}
+\ccsdesc[500]{计算方法~神经网络}
 
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{recommender system; sequential recommendation; multi-interest framework}
+\keywords{推荐系统; 顺序推荐; 多兴趣网络}
 
 %%
 %% This command processes the author and affiliation and title
 %% information and builds the first part of the formatted document.
 \maketitle
 
-\section{Introduction}\label{sec:intro}
+\section{引言}\label{sec:intro}
 \input{1.intro}
 
-\section{Related Work} \label{sec:related}
+\section{相关工作} \label{sec:related}
 \input{2.related}
 
-\section{Methodology}\label{sec:model}
+\section{方法}\label{sec:model}
 \input{3.model}
 
-\section{Experiments}\label{sec:exp}
+\section{实验}\label{sec:exp}
 \input{4.exp}
 
-\section{Conclusion} \label{sec:conclusion}
+\section{结论} \label{sec:conclusion}
 \input{5.conclusion}
 
 
@@ -244,3 +244,4 @@ and a research fund supported by Alibaba Group.
 \endinput
 %%
 %% End of file `sample-sigconf.tex'.
+%% vim: formatoptions-=mB
