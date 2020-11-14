@@ -1,29 +1,29 @@
 % !TEX root = ./0.main.tex
-In this section, we formulate the problem and introduce the proposed framework in detail, as well as showing the difference between our framework and representative existing methods.
+在本节中，我们将阐述问题并详细介绍拟议的框架，并说明我们的框架与代表性的现有方法之间的区别。
 
 \begin{table}
   \centering
-  \caption{\label{tab:notation} Notations.}
+  \caption{\label{tab:notation} 符号表.}
 %   \small
 %   \renewcommand{\arraystretch}{1.2}
   \begin{tabular}{c|p{2.55in}}
     \hline \hline
     \textbf{Notation} & \textbf{Description} \\
     \hline
-    $u$ & a user \\
-    $i$ & an item \\
-    $e$ & an interaction \\
-    $\mathcal{U}$ & the set of users \\
-    $\mathcal{I}$ & the set of items \\
+    $u$ & 一个用户 \\
+    $i$ & 一个项 \\
+    $e$ & 一个交互 \\
+    $\mathcal{U}$ & 用户集 \\
+    $\mathcal{I}$ & 项集 \\
     % $\mathcal{E}$ & a user's sequence \\
-    $\mathcal{I}_u$ & the set of testing items of user $u$ \\
+    $\mathcal{I}_u$ & 用户的测试项集 $u$ \\
     % $\mathcal{D}$ & the set of training samples \\
     % $\mathcal{D}^{+/-}$ & the set of positive/negative training samples \\
-    $d$ & the dimension of user/item embeddings \\
-    $K$ & the number of interest embeddings \\
-    $N$ & the number of candidate items\\
-    $\mathbf{V}_u$ & the matrix of interest embeddings of user $u$ \\
-    $\delta(\cdot)$ & indicator function \\
+    $d$ & 用户/项目嵌入的维度 \\
+    $K$ & 兴趣嵌入的数量 \\
+    $N$ & 候选项目数 \\
+    $\mathbf{V}_u$ & 用户$u$ 的兴趣嵌入矩阵 \\
+    $\delta(\cdot)$ & 指示函数 \\
     % $\mathbf{e}_i$ & the vector of primary capsule $i$ \\
     % $\mathbf{v}_j$ & the vector of interest capsule $j$ \\
     % $b_{ij}, c_{ij}$ & coupling coefficients of dynamic routing \\
@@ -32,12 +32,12 @@ In this section, we formulate the problem and introduce the proposed framework i
   \end{tabular}
 \end{table}
 
-\subsection{Problem Formulation}
+\subsection{问题表述}
 %~\cite{he2016fusing,hidasi2015session,rendle2010factorizing,smirnova2017contextual,tang2018personalized,tang2019towards}
 % We formulate the \textit{sequential recommendation} problem as a sequence prediction problem. 
 %recommend a set of items to each user that the user may be most interested in.
-Assume we have a set of users $u\in \mathcal{U}$ and a set of items $i\in \mathcal{I}$. For each user, we have a sequence of user historical behaviors $(e^{(u)}_{1}, e^{(u)}_{2}, \cdots, e^{(u)}_{n})$, sorted by time of the occurrence. $e^{(u)}_{t}$ records the $t^{th}$ item interacted by the user. Given historical interactions, the problem of \textit{sequential recommendation} is to predict the next items that the user might be interacted with. 
-Notations are summarized in Table~\ref{tab:notation}.
+假设我们有一组用户 $u\in \mathcal{U}$ 和一组项目 $i\in \mathcal{I}$. 对于每个用户，我们都有一系列用户历史行为 $(e^{(u)}_{1}, e^{(u)}_{2}, \cdots, e^{(u)}_{n})$，按出现时间排序。$e^{(u)}_{t}$ 记录用户交互的第 $t^{th}$ 项。给定历史交互，\textit{顺序推荐}问题指预测用户可能会与之交互的下一个项目。
+表~\ref{tab:notation} 中概述了用到的符号.
 
 In practice, due to the strict requirements of latency and performance, industrial recommender systems usually consist of two stages, the matching stage and the ranking stage. The matching stage corresponds to retrieving top-N candidate items, while the ranking stage is used for sorting the candidate items by more precise scores. Our paper mainly focuses on improving the effectiveness in the matching stage. In the following parts of this section, we will introduce our controllable multi-interest framework and illustrate the significance of our framework for the \textit{sequential recommendation} problem. % The overview of our models can be seen in Figure~\ref{fig:capsule}.
 
@@ -205,3 +205,4 @@ MIND~\cite{li2019multi}, a recent representative work for the matching stage of 
 % Specifically, MIND uses fully shared transformation matrices, i.e., $\mathbf{W}_{ij}=\mathbf{W}$. In this situation, B2I dynamic routing ignores the item positions and considers the item sequence as an item set. However, the item positions are important for the sequential recommendation. 
 %In this situation, the logits $b_{ij}$ cannot be initialized as zeros and are randomly initialized as Gaussian distribution for each batch, which may impact the semantics of capsules. 
 % Our method uses partially shared transformation matrices, i.e., $\mathbf{W}_{ij}=\mathbf{W}_j$. 
+%% vim: formatoptions=
