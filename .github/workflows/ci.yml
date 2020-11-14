@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Project
+      - uses: actions/checkout@v2
+
+      - name: Build Using TeXLive
+        uses: fredqi/tl-action@mini-v2
+        with:
+          tex_files: 0.main.tex
+          compiler: latexmk
+          options: -xelatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: paper
+          path: 0.main.pdf
