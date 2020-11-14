@@ -1,0 +1,207 @@
+% !TEX root = ./0.main.tex
+In this section, we formulate the problem and introduce the proposed framework in detail, as well as showing the difference between our framework and representative existing methods.
+
+\begin{table}
+  \centering
+  \caption{\label{tab:notation} Notations.}
+%   \small
+%   \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{c|p{2.55in}}
+    \hline \hline
+    \textbf{Notation} & \textbf{Description} \\
+    \hline
+    $u$ & a user \\
+    $i$ & an item \\
+    $e$ & an interaction \\
+    $\mathcal{U}$ & the set of users \\
+    $\mathcal{I}$ & the set of items \\
+    % $\mathcal{E}$ & a user's sequence \\
+    $\mathcal{I}_u$ & the set of testing items of user $u$ \\
+    % $\mathcal{D}$ & the set of training samples \\
+    % $\mathcal{D}^{+/-}$ & the set of positive/negative training samples \\
+    $d$ & the dimension of user/item embeddings \\
+    $K$ & the number of interest embeddings \\
+    $N$ & the number of candidate items\\
+    $\mathbf{V}_u$ & the matrix of interest embeddings of user $u$ \\
+    $\delta(\cdot)$ & indicator function \\
+    % $\mathbf{e}_i$ & the vector of primary capsule $i$ \\
+    % $\mathbf{v}_j$ & the vector of interest capsule $j$ \\
+    % $b_{ij}, c_{ij}$ & coupling coefficients of dynamic routing \\
+    % $\mathbf{W}$ & transformation matrix \\
+    \hline \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Problem Formulation}
+%~\cite{he2016fusing,hidasi2015session,rendle2010factorizing,smirnova2017contextual,tang2018personalized,tang2019towards}
+% We formulate the \textit{sequential recommendation} problem as a sequence prediction problem. 
+%recommend a set of items to each user that the user may be most interested in.
+Assume we have a set of users $u\in \mathcal{U}$ and a set of items $i\in \mathcal{I}$. For each user, we have a sequence of user historical behaviors $(e^{(u)}_{1}, e^{(u)}_{2}, \cdots, e^{(u)}_{n})$, sorted by time of the occurrence. $e^{(u)}_{t}$ records the $t^{th}$ item interacted by the user. Given historical interactions, the problem of \textit{sequential recommendation} is to predict the next items that the user might be interacted with. 
+Notations are summarized in Table~\ref{tab:notation}.
+
+In practice, due to the strict requirements of latency and performance, industrial recommender systems usually consist of two stages, the matching stage and the ranking stage. The matching stage corresponds to retrieving top-N candidate items, while the ranking stage is used for sorting the candidate items by more precise scores. Our paper mainly focuses on improving the effectiveness in the matching stage. In the following parts of this section, we will introduce our controllable multi-interest framework and illustrate the significance of our framework for the \textit{sequential recommendation} problem. % The overview of our models can be seen in Figure~\ref{fig:capsule}.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/multi-interest-framework.pdf}
+    \caption{An overview of our model for the sequential recommendation. The input of our model is a user behavior sequence, which contains a list of item IDs. The item IDs are fed into the embedding layer and transformed into the item embeddings. Interest embeddings are generated through the multi-interest extraction module and can be then used for model training and serving. For model training, the nearest interest embedding to the target embedding will be chosen to compute the sampled softmax loss. For serving, each interest embedding will independently retrieve top-N nearest items, which are then fed into the aggregation module. The aggregation module generates the overall top-N items by a controllable procedure that balances the recommendation accuracy and diversity. }
+    \label{fig:capsule_matching}
+\end{figure*}
+
+\subsection{Multi-Interest Framework}
+As the item pools of industrial recommender systems usually consist of millions or even billions of items, the matching stage plays a crucial role in recommender systems. Specifically, the matching model first computes user embeddings from user historical behaviors and then retrieves a candidate set of items for each user based on the user embedding. With the help of fast K nearest neighbors (KNN) algorithm to select the closest items from the large-scale item pool to generate a candidate set for each user, we mainly focus on the computation of user embeddings. In other words, the decisive factor for the matching stage is the quality of user embeddings computed from user historical behaviors. 
+
+Existing matching models usually use RNN\cite{hidasi2015session,wu2017recurrent} to compute embeddings for users, but most of them only generate a single embedding vector for each user. This suffers from the lack of expressiveness of a single embedding since real-world customers usually have several kinds of items in their minds and these items are often for different uses and vary a lot in categories. Such behaviors of real-world customers highlight the need to use multiple vectors to represent their multiple interests. Based on the observations, we propose a multi-interest framework for the sequential recommendation. The input of our framework is a user behavior sequence, which contains a list of item IDs representing the user's interactions with items in time order. The item IDs are fed into an embedding layer and transformed into item embeddings. A multi-interest extraction module receives item embeddings and generates multiple interests for each user.
+
+%Interest capsules are generated through the dynamic routing method and can be then used for model training and online serving.
+
+% RNN-based models~\cite{hidasi2015session,wu2017recurrent} are widely used in sequential recommendation. These models are effective for short-term user sequences~\cite{tang2019towards} but cannot capture long-term user interests from user sequences. 
+To build a multi-interest extraction module, there are many optional methods. In this paper, we explore two methods, dynamic routing method and self-attentive method, as our multi-interest extraction module. Our framework using a dynamic routing method or self-attentive method is named as \model-DR or \model-SA, respectively. 
+
+\vpara{Dynamic Routing.}
+%\zc{The motivation to exploit multi-interest network as the long-range model should be highlighted.}
+We utilize a dynamic routing method as a multi-interest extraction module for user behavior sequences. The item embeddings of the user sequence can be viewed as primary capsules, and the multiple user interests can be seen as interest capsules. We use the dynamic routing method from CapsNet~\cite{sabour2017dynamic}. 
+We briefly introduce dynamic routing for computing vector inputs and outputs of capsules. A capsule is a group of neurons whose activity vectors represent the instantiation parameters of a specific type of entity such as an object or an object part~\cite{sabour2017dynamic}. The length of the output vector of a capsule represents the probability that the entity represented by the capsule is in the current input. Let $\mathbf{e}_i$ be the capsule $i$ of the primary layer. We then give the computation of the capsule $j$ of the next layer based on primary capsules. 
+%How to calculate capsules $\mathbf{v}_j$ of the output layer? 
+We first compute the prediction vector as
+\begin{equation}
+    \hat{\mathbf{e}}_{j|i}=\mathbf{W}_{ij} \mathbf{e}_{i},
+\end{equation}
+where $\mathbf{W}_{ij}$ is a transformation matrix. Then the total input to the capsule $j$ is the weighted sum over all prediction vectors $\hat{\mathbf{e}}_{j|i}$ as
+\begin{equation}
+        \mathbf{s}_j = \sum_i c_{ij} \hat{\mathbf{e}}_{j|i},
+\end{equation}
+where $c_{ij}$ are the coupling coefficients that are determined by the iterative dynamic routing process. The coupling coefficients between capsule $i$ and all the capsules in the next layer should sum to 1. We use ``routing softmax'' to calculate the coupling coefficients using initial logits $b_{ij}$ as
+\begin{equation}
+    c_{ij}=\frac{\exp(b_{ij})}{\sum_k \exp(b_{ik})},
+\end{equation}
+where $b_{ij}$ represents the log prior probability that capsule $i$ should be coupled to capsule $j$. A non-linear "squashing" function~\cite{sabour2017dynamic} is proposed to ensure short vectors to get shrunk to almost zero length and long vectors to get shrunk to a length slightly below 1. Then the vector of of capsule $j$ is computed by
+\begin{equation}
+    \label{eqn:squash}
+    \mathbf{v}_j = \operatorname{squash}(\mathbf{s}_j) =  \frac{\|\mathbf{s}_j\|^2}{1+\|\mathbf{s}_j\|^2} \frac{\mathbf{s}_j}{\|\mathbf{s}_j\|},
+\end{equation}
+where $\mathbf{s}_j$ is the total input of capsule $j$. To calculate the output capsules $\mathbf{v}_j$, we need to calculate the probability distribution based on the inner production of $\mathbf{v}_j$ and $\mathbf{e}_i$. The calculation of $\mathbf{v}_j$ relies on itself; thus, dynamic routing method is proposed to solve this problem. The whole dynamic routing process is listed in Algorithm~\ref{algo:dynamic_routing}. The output interest capsules of the user $u$ are then formed as a matrix $\mathbf{V}_u=[\mathbf{v}_1, ..., \mathbf{v}_K] \in \mathbb{R}^{d\times K}$ for downstream tasks.
+
+% In order to ensure the diversity between interest capsules, we introduce a penalty term similar with \cite{lin2017structured}.
+
+% \begin{equation}
+%     P = \sum_{u\in \mathcal{U}}||\mathbf{V}_u \mathbf{V}_u^T-\mathbf{I}||_F^2
+% \end{equation}
+% where $||\cdot||_F$ denotes the Frobenius norm of a matrix. The penalty term $P$ will be multiplied by a coefficient and then added to the original loss (binary cross entropy loss or sampled softmax loss).
+
+\begin{algorithm}[t]
+	\caption{Dynamic Routing \label{algo:dynamic_routing}}
+	\KwIn{primary capsules $\mathbf{e}_i$, iteration times $r$, number of interest capsules $K$}
+	\KwOut{interest capsules $\{\mathbf{v}_j, j=1,...,K\}$}
+	for each primary capsule $i$ and interest capsule $j$: initialize $b_{ij} = 0$. \\
+    \For{$iter = 1,\cdots,r$} {
+        for each primary capsule $i$: $\mathbf{c}_i = \operatorname{softmax}(\mathbf{b}_{i})$.\\
+        for each interest capsule $j$: $\mathbf{s}_j = \sum_{i} c_{ij}\mathbf{W}_{ij}\mathbf{e}_i$.\\%\hat{\mathbf{e}_{j|i}}$. \\
+
+        for each interest capsule $j$: $\mathbf{v}_j = \operatorname{squash}(\mathbf{s}_j)$. \\
+
+        for each primary capsule $i$ and interest capsule $j$: $b_{ij} = b_{ij}+ \mathbf{v}_j^\top \mathbf{W}_{ij}\mathbf{e}_i$.
+    }
+    \Return{$\{\mathbf{v}_j, j=1,...,K\}$}
+\end{algorithm}
+
+
+\vpara{Self-Attentive Method.} 
+The self-attentive method~\cite{lin2017structured} can also be applied to our multi-interest extraction module. 
+Given the embeddings of user behaviors, $\mathbf{H}\in \mathbb{R}^{d\times n}$, where $n$ is the length of the user sequence, we use the self-attention mechanism to obtain a vector of weights $\mathbf{a} \in \mathbb{R}^{n}$:
+\begin{equation}
+    \mathbf{a} = \operatorname{softmax}(\mathbf{w}_{2}^\top \operatorname{tanh}(\mathbf{W}_{1} \mathbf{H}))^\top,
+\end{equation}
+\noindent where $\mathbf{w}_{2}$ and $\mathbf{W}_{1}$ are trainable parameters with size $d_a$ and $d_a \times d$, respectively. The superscript $\top$ denotes the transpose of the vector or the matrix. The vector $\mathbf{a}$ with size $n$ represents the attention weight of user behaviors. When we sum up the embeddings of user behaviors according to the attention weight, we can obtain a vector representation $\mathbf{v}_u = \mathbf{H} \mathbf{a}$ for the user. For the self-attentive method to make use of the order of user sequences, we add trainable positional embeddings~\cite{vaswani2017attention} to the input embeddings. The positional embeddings have the same dimension $d$ as the item embeddings and the two can be directly summed. 
+
+This vector representation focuses on and reflects a specific interest of the user $u$. To represent the overall interests of the user, we need multiple $\mathbf{v}_u$ from the user behaviors that focus on different interests. Thus we need to perform multiple times of attention. We extend the $\mathbf{w}_{2}$ into a $d_a$-by-$K$ matrix as $\mathbf{W}_{2}$. Then the attention vector $\mathbf{a}$ becomes an attention matrix $\mathbf{A}$ as
+\begin{equation}
+    \mathbf{A} = \operatorname{softmax}(\mathbf{W}_{2}^\top \operatorname{tanh}(\mathbf{W}_{1} \mathbf{H}))^\top.
+\end{equation}
+
+The final matrix of user interests $\mathbf{V}_u$ can be computed by
+\begin{equation}
+    \label{eqn:sa}
+    \mathbf{V}_u = \mathbf{H} \mathbf{A}.
+\end{equation}
+
+
+
+\vpara{Model Training.}
+After computing the interest embeddings from user behaviors through the multi-interest extraction module, we use an \textit{argmax} operator to choose a corresponding user embedding vector for a target item $i$:
+
+\begin{equation}
+    \label{eqn:argmax}
+    \begin{aligned}
+        % \mathbf{v}_u & = \operatorname{Attention}(\mathbf{e}_i, \mathbf{V}_u, \mathbf{V}_u) \\
+        % & = \mathbf{V}_u \operatorname{softmax}(\mathbf{V}_u^\top \mathbf{e}_i),
+        \mathbf{v}_u = \mathbf{V}_u[:, \operatorname{argmax}(\mathbf{V}_u^\top \mathbf{e}_i)],
+    \end{aligned}
+\end{equation}
+where $\mathbf{e}_i$ denotes the embedding of the target item $i$, and $\mathbf{V}_u$ is the matrix formed by user interest embeddings. %The function $\operatorname{pow}$ is the element-wise exponential function and $p$ is a hyperparameter which controls the attention distribution. 
+
+Given a training sample $(u,i)$ with the user embedding $\mathbf{v}_u$ and the item embedding $\mathbf{e}_i$, we can compute the likelihood of the user $u$ interacting with the item $i$ as
+
+\begin{equation}
+    \label{eqn:likelihood}
+    P_\theta(i|u) = \frac{\exp(\mathbf{v}_u^\top \mathbf{e}_i)}{\sum_{k\in\mathcal{I}}\exp(\mathbf{v}_u^\top \mathbf{e}_k)}.
+\end{equation}
+
+The objective function of our model is to minimize the following negative log-likelihood
+
+\begin{equation}
+    \label{eqn:loss}
+    loss = \sum_{u\in \mathcal{U}} \sum_{i\in \mathcal{I}_u} -\log P_\theta(i|u).
+\end{equation}
+
+The sum operator of equation (\ref{eqn:likelihood}) is computationally expensive; thus, we use a sampled softmax technique~\cite{jean2014using, covington2016deep} to train our model.
+
+\vpara{Online Serving.}
+For online serving, we use our multi-interest extraction module to compute multiple interests for each user. Each interest vector of a user can independently retrieve top-N items from the large-scale item pool by the nearest neighbor library such as Faiss~\cite{JDH17}. The items retrieved by multiple interests are fed into an aggregation module to determine the overall item candidates. Finally, the items with higher ranking scores will be recommended for users.
+
+
+% \subsection{Multi-Interest Extraction Module}
+
+
+\begin{algorithm}[t]
+	\caption{Greedy Inference \label{algo:greedy_infer}}
+	\KwIn{Candidate item set $\mathcal{M}$, number of output items $N$}
+	\KwOut{Output item set $\mathcal{S}$}
+	$\mathcal{S} = \varnothing$ \\
+    \For{$iter = 1,\cdots,N$} {
+        $j = \operatorname{argmax}_{i \in \mathcal{M} \backslash \mathcal{S}} \left( f(u, i) + \lambda \sum_{k \in \mathcal{S}} g(i,k) \right)$ \\
+        $\mathcal{S} = \mathcal{S} \cup \{j\}$
+    }
+    \Return{$\mathcal{S}$}
+\end{algorithm}
+
+\subsection{Aggregation Module}
+After the multi-interest extraction module, we obtain multiple interest embeddings for each user based on his/her past behavior. Each interest embedding can independently retrieve top-N items based on the inner production proximity. But how to aggregate these items from different interests to obtain the overall top-N items? A basic and straightforward way is to merge and filter the items based on their inner production proximity with user interests, which can be formalized as
+\begin{equation}
+    f(u,i) = \max_{1\leq k\leq K}(\mathbf{e}_i^\top \mathbf{v}_u^{(k)}),
+\end{equation}
+where $\mathbf{v}_u^{(k)}$ is the $k$-th interest embedding of the user $u$. This is an effective method for the aggregation process to maximize the recommendation accuracy. However, it is not all about the accuracy of current recommender systems. People are more likely to be recommended with something new or something diverse. 
+The problem can be formulated in the following. Given a set $\mathcal{M}$ with $K\cdot N$ items retrieved from $K$ interests of a user $u$, find a set $\mathcal{S}$ with $N$ items such that a pre-defined value function is maximized. Our framework uses a controllable procedure to solve this problem. We use the following value function $Q(u,S)$ to balance the accuracy and diversity of the recommendation by a controllable factor $\lambda \geq 0$,
+\begin{equation}
+    Q(u,\mathcal{S}) = \sum_{i\in \mathcal{S}} f(u,i) + \lambda \sum_{i\in \mathcal{S}} \sum_{j\in \mathcal{S}} g(i,j).
+\end{equation}
+\noindent Here $g(i,j)$ is a diversity or dissimilarity function such as
+\begin{equation}
+    g(i,j) = \delta(\operatorname{CATE}(i) \neq \operatorname{CATE}(j)).
+\end{equation}
+where $\operatorname{CATE}(i)$ means the category of item $i$ and $\delta(\cdot)$ is an indicator function. 
+For the most accurate case, i.e., $\lambda=0$, we just use the above straightforward method to obtain the overall items. For the most diverse case, i.e., $\lambda=\infty$, the controllable module finds the most diverse items for users. We study the controllable factor in the Section~\ref{sec:control_study}. We propose a greedy inference algorithm to approximately maximize the value function $Q(u,S)$, which is listed in the Algorithm~\ref{algo:greedy_infer}.
+
+
+\subsection{Connections with Existing Models}
+We make a comparison between our model and existing models. 
+
+\vpara{MIMN.}
+MIMN~\cite{pi2019practice}, a recent representative work for the ranking stage of recommendation, uses memory networks to capture user interests from long sequential behavior data. Both MIMN and our model target at the multiple interests of users. For very long sequential behaviors, a memory-based architecture may also be insufficient to capture the long-term interests of users. Compared with MIMN, our model utilizes the multi-interest extraction module to leverage multiple interests of users instead of a complicated memory network with memory utilization regularization and memory induction unit. 
+
+\vpara{MIND.}
+MIND~\cite{li2019multi}, a recent representative work for the matching stage of recommendation, proposes a Behavior-to-Interest (B2I) dynamic routing for adaptively aggregating user's behaviors into interest representation vectors. Compared with MIND, \model-DR follows the original dynamic routing method used by CapsNet~\cite{sabour2017dynamic}, which can capture the sequential information of user behaviors. Our framework also explores a self-attentive method for multi-interest extraction. Moreover, our framework utilizes a controllable aggregation module to balance the recommendation accuracy and diversity based on users' multiple interests. 
+
+% Specifically, MIND uses fully shared transformation matrices, i.e., $\mathbf{W}_{ij}=\mathbf{W}$. In this situation, B2I dynamic routing ignores the item positions and considers the item sequence as an item set. However, the item positions are important for the sequential recommendation. 
+%In this situation, the logits $b_{ij}$ cannot be initialized as zeros and are randomly initialized as Gaussian distribution for each batch, which may impact the semantics of capsules. 
+% Our method uses partially shared transformation matrices, i.e., $\mathbf{W}_{ij}=\mathbf{W}_j$. 

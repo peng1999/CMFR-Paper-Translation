@@ -1,0 +1,77 @@
+% !TEX root = ./0.main.tex
+
+In the appendix, we give the implementation notes of our proposed models. The details of other models and descriptions of datasets are then given.
+
+\subsection{Implementation Notes}
+
+\vpara{Running Environment.}
+The experiments in this paper can be divided into two parts. One is conducted on two public datasets using a single Linux server with 4 Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz, 256G RAM, and 8 NVIDIA GeForce RTX 2080 Ti. The codes of our proposed models in this part are implemented with TensorFlow\footnote{\label{fn:tf}\url{https://www.tensorflow.org/}} 1.14 in Python 3.6. 
+The other part is conducted on the industrial dataset using Alibaba's distributed cloud platform\footnote{\url{https://data.aliyun.com/}} which contains thousands of workers. Every two workers share an NVIDIA Tesla P100 GPU with 16GB memory. Our proposed models are implemented with TensorFlow 1.4 in Python 2.7 in this part.
+
+\vpara{Implementation Details.}
+Our codes used by a single Linux server can be split into three parts: data iterator, model training, and evaluation. For each training iteration, the data iterator selects random training users with a size of $batch\_size$. For each selected user, we randomly select an item in his/her click sequence as the training label and use the items before that item as the training sequence. 
+The training part is implemented following the training loop in the Algorithm~\ref{algo:training} based on the Tensorflow 1.x APIs. Our loss function is based on \textit{tf.nn.sampled\_softmax\_loss}.
+The evaluation part replies on Faiss\footnote{\url{https://github.com/facebookresearch/faiss}}, a library for efficient similarity search and clustering of dense vectors. We use the \textit{GpuIndexFlatIP} class of Faiss, which implements an exact search for the inner product on GPU. 
+All model parameters are updated and optimized by stochastic gradient descent with Adam updating rule~\cite{kingma2014adam}. 
+The distributed version of our proposed models is implemented based on the coding rules of Alibaba's distributed cloud platform in order to maximize the distribution efficiency. 
+% High-level APIs, such as \textit{tf.estimator} and \textit{tf.data}, are used for the higher coefficient of utilization of computation resources in the Alibaba's distributed cloud platform. 
+
+
+\vpara{Parameter Configuration.}
+Our user/item embedding dimension $d$ is set to 64. The number of samples for sampled softmax loss is set to 10. The number of maximum training iterations is set to 1 million and all models use early stopping based on the Recall@50 on the validation set. The batch size for the Amazon dataset and Taobao dataset is set to 128 and 256, respectively. The number of iterations for the dynamic routing method is set to 3. The number of interest embeddings $K$ for multi-interest models is set to 4 for a fair comparison. We use the Adam optimizer~\cite{kingma2014adam} with learning rate $lr=0.001$ for optimization.
+
+\vpara{Code and Dataset Releasing Details.}
+The code of all models and our partition of the two public datasets are available\footnote{\url{https://github.com/THUDM/ComiRec}}. 
+
+\subsection{Compared Methods}
+We give the implementation details about all compared methods as follows. 
+
+\begin{itemize}
+    \item \textbf{MostPopular} is a non-personalized method that recommends the most popular items to users. This method does not need training and we implement it separately. 
+    \item \textbf{YouTube DNN} is one of the most successful deep learning models for industrial recommender systems. We implement the model in our code based on the original paper.
+    \item \textbf{GRU4REC} is the first work that introduces recurrent neural networks for the recommendation. We implement the model by \textit{tf.nn.rnn\_cell.GRUCell} and \textit{tf.nn.dynamic\_rnn} of TensorFlow in our code.
+    \item \textbf{MIND} is a recent state-of-the-art model. We implement the model based on the original paper and an internal version of the code in Alibaba Group. 
+\end{itemize}
+
+% \begin{table}
+%   \centering
+%   \caption{\label{tab:stats_origin} Statistics of Original Datasets.}
+%   \begin{tabular}{c|c|c|c}
+%     \hline \hline
+%     \textbf{Dataset} & \# users & \# items & \# interactions \\
+%     \hline
+%     Amazon Books & 8,026,324 & 2,330,066 & 22,507,155 \\
+%     Taobao & 987,994 & 4,162,024 & 100,150,807 \\
+%     \hline \hline
+%   \end{tabular}
+% \end{table}
+
+\subsection{Datasets}
+Our experiments evaluate on three datasets, including two public datasets and a billion-scale industrial dataset. For the two public datasets, we keep users and items with at least 5 behaviors. 
+% Table \ref{tab:stats_origin} shows the statistics of the original public datasets.
+
+\begin{itemize}
+    \item \textbf{Amazon}\footnote{\url{http://jmcauley.ucsd.edu/data/amazon/}} consists of product reviews and metadata from Amazon ~\cite{mcauley2015image,he2016ups}. In our experiment, we use the \textit{Books} category of the Amazon dataset. For each user $u$, we sort the reviews from the user by time, and our task is to predict whether the user will write the review for the item based on previous reviews. Each training sample is truncated at length 20.
+    \item \textbf{Taobao}\footnote{\url{https://tianchi.aliyun.com/dataset/dataDetail?dataId=649\&userId=1}} collects user behaviors from Taobao's recommender systems~\cite{zhu2018learning}. Taobao dataset randomly selects about 1 million users who have behaviors including click, purchase, add-to-cart, and add-to-preference from November 25 to December 03, 2017. Each behavior is represented by five fields, which consist of user ID, item ID, item's category ID, behavior type, and timestamp. In our experiment, we only use the click behaviors and sort the behaviors from one user by time. Each training sample is truncated at length 50.
+    \item \textbf{Industrial dataset} collects user click behaviors by Mobile Taobao App on February 8th, 2020. The industrial dataset contains 22 million high-quality items, 145 million users, and 4 billion behaviors between them. Each training sample is truncated at length 40.
+\end{itemize}
+
+\begin{algorithm}[t]
+	\caption{\model \label{algo:training}}
+	\KwIn{User behavior sequences. }
+	Initialize all the model parameters. \\
+	Generate training samples $\{(u,i)\}$ with user click sequences.\\
+	\While{not converged} {
+		\For{each batch from training samples} {
+			Compute $\mathbf{V}_u$ using multi-interest extraction module. \\
+			Compute $\mathbf{v}_u$ based on Equation (\ref{eqn:argmax}). \\
+			Compute sampled softmax loss using Equation (\ref{eqn:loss}). \\
+			Update model parameters by the Adam optimizer.
+		}
+	}
+\end{algorithm}
+
+
+% \subsection{Discussion}
+
+

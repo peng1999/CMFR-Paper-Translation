@@ -1,0 +1,242 @@
+%%
+%% This is file `sample-sigconf.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `sigconf')
+%% 
+%% IMPORTANT NOTICE:
+%% jj
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[sigconf]{acmart}
+
+\usepackage{booktabs} % For formal tables
+% \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{algorithmic}
+\usepackage[linesnumbered, ruled, vlined]{algorithm2e}
+\usepackage{multirow}
+\usepackage{tablefootnote}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{flushend}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{array, makecell}
+\usepackage{footmisc}
+\usepackage{amsmath}
+% \usepackage{ulem} 
+\usepackage{xcolor}
+\newcommand\yang[1]{\textcolor{magenta}{[Hongxia: #1]}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\red[1]{\textcolor{blue}{#1}}
+\newcommand\zc[1]{\textcolor{blue}{[zc: #1]}}
+\newcommand\xz[1]{\textcolor{teal}{[xz: #1]}}
+% \newcommand\hide[1]{}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand{\hide}[1]{}
+\newcommand{\jie}[1]{\textbf{\color{red}[(JT: #1 )]}}  % to fix
+\newcommand{\vpara}[1]{\vspace{0.07in}\noindent\textbf{#1 }}
+\newcommand{\model}{{ComiRec}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{problem}{Problem}
+
+
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+
+\copyrightyear{2020}
+\acmYear{2020}
+\setcopyright{acmcopyright}
+\acmConference[KDD '20]{Proceedings of the 26th ACM SIGKDD Conference on Knowledge Discovery and Data Mining}{August 23--27, 2020}{Virtual Event, CA, USA}
+\acmBooktitle{Proceedings of the 26th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '20), August 23--27, 2020, Virtual Event, CA, USA}
+\acmPrice{15.00}
+\acmDOI{10.1145/3394486.3403344}
+\acmISBN{978-1-4503-7998-4/20/08}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\settopmatter{printacmref=true}
+
+\begin{document}
+
+\fancyhead{}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Controllable Multi-Interest Framework for Recommendation}
+% \title{Controllable Multi-Interest Sequential Recommendation}
+
+\author[Y. Cen, J. Zhang, X. Zou, C. Zhou, H. Yang and J. Tang]{
+    Yukuo Cen$^{\dagger}$, Jianwei Zhang$^{\ddagger}$, Xu Zou$^{\dagger}$, Chang Zhou$^{\ddagger}$, Hongxia Yang$^{\ddagger*}$, Jie Tang$^{\dagger*}$
+}
+\affiliation{
+    $^\dagger$ Department of Computer Science and Technology, Tsinghua University
+}
+\affiliation{
+    $^\ddagger$ DAMO Academy, Alibaba Group
+}
+\email{
+  {cyk18, zoux18}@mails.tsinghua.edu.cn
+}
+\email{
+  {zhangjianwei.zjw, ericzhou.zc, yang.yhx}@alibaba-inc.com
+}
+\email{
+  jietang@tsinghua.edu.cn
+}
+
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\authors}{Yukuo Cen, Jianwei Zhang, Xu Zou, Chang Zhou, Hongxia Yang and Jie Tang}
+\renewcommand{\shortauthors}{Y. Cen et al.}
+
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[1]{Hongxia Yang and Jie Tang are the corresponding authors.}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+Recently, neural networks have been widely used in e-commerce recommender systems, owing to the rapid development of deep learning. 
+We formalize the recommender system as a sequential recommendation problem, intending to predict the next items that the user might be interacted with. 
+Recent works usually give an overall embedding from a user's behavior sequence. However, a unified user embedding cannot reflect the user's multiple interests during a period. 
+In this paper, we propose a novel \textbf{\textit{co}}ntrollable \textbf{\textit{m}}ulti-\textbf{\textit{i}}nterest framework for the sequential \textbf{\textit{rec}}ommendation, called \model. Our multi-interest module captures multiple interests from user behavior sequences, which can be exploited for retrieving candidate items from the large-scale item pool. These items are then fed into an aggregation module to obtain the overall recommendation. The aggregation module leverages a controllable factor to balance the recommendation accuracy and diversity. 
+We conduct experiments for the sequential recommendation on two real-world datasets, Amazon and Taobao. Experimental results demonstrate that our framework achieves significant improvements over state-of-the-art models\footnote{Code is available at \url{https://github.com/THUDM/ComiRec}}. 
+Our framework has also been successfully deployed on the offline Alibaba distributed cloud platform. %Results on the billion-scale industrial dataset further confirm the effectiveness and efficiency of CapsRec in practice.
+\end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10002951.10003317.10003347.10003350</concept_id>
+<concept_desc>Information systems~Recommender systems</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010257.10010293.10010294</concept_id>
+<concept_desc>Computing methodologies~Neural networks</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Information systems~Recommender systems}
+\ccsdesc[500]{Computing methodologies~Neural networks}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{recommender system; sequential recommendation; multi-interest framework}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+\input{1.intro}
+
+\section{Related Work} \label{sec:related}
+\input{2.related}
+
+\section{Methodology}\label{sec:model}
+\input{3.model}
+
+\section{Experiments}\label{sec:exp}
+\input{4.exp}
+
+\section{Conclusion} \label{sec:conclusion}
+\input{5.conclusion}
+
+
+
+%%
+%% The acknowledgments section is defined using the "acks" environment
+%% (and NOT an unnumbered section). This ensures the proper
+%% identification of the section in the article metadata, and the
+%% consistent spelling of the heading.
+\begin{acks}
+The work is supported by the
+NSFC for Distinguished Young Scholar 
+%jie tang
+(61825602),
+%chunyuan zhou
+NSFC (61836013), 
+and a research fund supported by Alibaba Group.
+\end{acks}
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{reference}
+
+%%
+%% If your work has an appendix, this is the place to put it.
+\appendix
+\section{Appendix}
+\label{sec:appendix}
+\input{6.appendix}
+
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-sigconf.tex'.

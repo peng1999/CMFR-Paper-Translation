@@ -1,0 +1,43 @@
+% !TEX root = ./0.main.tex
+
+In this section, we introduce the related literature about recommender systems and recommendation diversity, as well as capsule networks and the attention mechanism we used in the paper.
+% we give the following three kinds of related literature, including neural recomemender systems, sequential recommendation, and capsule network. 
+
+% \vpara{Recommender Systems.}
+Collaborative filtering~\cite{sarwar2001item,schafer2007collaborative} methods have been proven successful in real-world recommender systems, which find similar users and items and make recommendations on this basis. Matrix factorizaion~\cite{koren2009matrix} is the most popular technique in classical recommender research, which maps both users and items to a joint latent factor space, such that user-item interactions are modeled as inner products in that space. Factorization Machines (FMs)~\cite{rendle2010factorization} model all interactions between variables using factorized parameters and thus can estimate interactions even in problems with huge sparsity like recommender systems.
+
+\vpara{Neural Recommender Systems.}
+Neural Collaborative Filtering (NCF)~\cite{he2017neural} uses a neural network architecture to model latent features of users and items. 
+NFM~\cite{he2017nfm} seamlessly combines the linearity of FMs in modeling second-order feature interactions and the non-linearity of neural networks in modeling higher-order feature interactions.
+DeepFM~\cite{guo2017deepfm} designs an end-to-end learning model that emphasizes both low-order and high-order feature interactions for CTR prediction.
+xDeepFM~\cite{lian2018xdeepfm} extends DeepFM and can learn specific bounded-degree feature interactions explicitly.
+Deep Matrix Factorization (DMF)~\cite{xue2017deep} uses a deep structure learning architecture to learn a common low dimensional space for the representations of users and items based on explicit ratings and non-preference implicit feedback.
+DCN~\cite{wang2017deep} keeps the benefits of a deep model and introduces a novel cross network that is more efficient in learning specific bounded-degree feature interactions.
+CMN~\cite{ebesu2018collaborative} uses deep architecture to unify the two classes of CF models capitalizing on the strengths of the global structure of the latent factor model and local neighborhood-based structure in a nonlinear fashion.
+
+
+\vpara{Sequential Recommendation.}
+The sequential recommendation is the crucial problem of recommender systems. Many recent works about recommender systems focus on this problem. FPMC~\cite{rendle2010factorizing} subsumes both a common Markov chain and the normal matrix factorization model for sequential basket data. HRM~\cite{wang2015learning} extends the FPMC model and employs a two-layer structure to construct a hybrid representation over users and items from the last transaction. GRU4Rec~\cite{hidasi2015session} first introduces an RNN-based approach to model the whole session for more accurate recommendations. DREAM~\cite{yu2016dynamic}, based on Recurrent Neural Network (RNN), learns a dynamic representation of a user for revealing the user's dynamic interests. Fossil~\cite{he2016fusing} integrates similarity-based methods with Markov Chains smoothly to make personalized sequential predictions on sparse and long-tailed datasets. TransRec~\cite{he2017translation} embeds items into a vector space where users are modeled as vectors operating on item sequences for large-scale sequential prediction. RUM~\cite{chen2018sequential} uses a memory-augmented neural network integrated with the insights of collaborative filtering for the recommendation. SASRec~\cite{kang2018self} uses a self-attention based sequential model to capture long-term semantics and uses an attention mechanism to make its predictions based on relatively few actions. DIN~\cite{zhou2018deep} designs a local activation unit to adaptively learn the representation of user interests from past behaviors with respect to a certain ad. SDM~\cite{lv2019sdm} encodes behavior sequences with a multi-head self-attention module to capture multiple types of interests and a long-short term gated fusion module to incorporate long-term preferences.
+
+% DIEN~\cite{zhou2019deep} designs an interest extractor layer to capture temporal interests from history behavior sequence and an interest evolving layer to capture interest evolving process that is relative to the target item. DSIN~\cite{feng2019deep} leverages users' multiple historical sessions in their behavior sequences by Bi-LSTM and self-attention mechanism with bias encoding. 
+
+\vpara{Recommendation Diversity.}
+Researchers have realized that following only the most accurate way of recommendation may not result in the best recommendation results, since the highest accuracy results tend to recommend similar items to users, yielding boring recommendation results~\cite{panniello2014comparing}. To address such problems, the diversity of the recommended items also plays a significant role~\cite{slaney2006measuring}. In terms of diversity, there is aggregated diversity~\cite{adomavicius2011improving}, which refers to the ability to recommend "long-tail items" to users. Many studies focus on improving aggregated diversity of recommendation systems  ~\cite{bag2019integrated,adomavicius2011improving,niemann2013new,qin2013promoting}. Other works focus on the diversity of items recommended to individual users, i.e., the individual diversity~\cite{adomavicius2011improving,yu2019recommendation,kalaivanan2013recommendation,di2014analysis}, which refers to the dissimilarity of items recommended to an individual user.
+
+% In this paper, our system have the ability to balance between accuracy and individual diversity. However, the “individual diversity” in our model is not based on the traditional categorical diversity, but on the self-learnt interests for our model, making our work the first one to introduce the individual diversity on multiple interests of users. 
+% \vpara{Transformer}
+% Transformer~\cite{} has been widely used in NLP fields. Some researchers~\cite{} apply this architecture to the recommendation areas.
+
+\vpara{Attention}
+The originality of attention mechanism can be traced back to decades ago in fields of computer vision ~\cite{burt1988attention,sun2003object}. However, its popularity in various fields in machine learning comes only in recent years. It is first introduced to machine translation by ~\cite{bahdanau2014neural}, and later becomes an outbreaking method as \textit{tensor2tensor}~\cite{vaswani2017attention}. BERT ~\cite{devlin2018bert} leverages \textit{tensor2tensor} and achieves giant success in natural language processing. 
+% Since the sequential recommendation problem is similar in terms of formulation as the next word prediction problem for natural language processing, 
+The attention mechanism is also adapted to recommender systems ~\cite{zhou2018atrank,cen2019representation} and is rather useful on real-world recommendation tasks. 
+% The attention mechanism in this paper follows the self-attention \cite{vaswani2017attention,zhou2018atrank} setting that we try to learn a scoring function according to the embedding themselves and assign weights by the calculated scores. 
+
+
+\vpara{Capsule Network.}
+The concept of ``capsules'' is first proposed by~\cite{hinton2011transforming} and has become well-known since the dynamic routing method ~\cite{sabour2017dynamic} is proposed. 
+% ~\cite{e2018matrix} describes a version of capsules in which each capsule has a logistic unit to represent the presence of an entity and a 4$\times$4 matrix, which could learn to represent the relationship between the entity and the viewer. 
+% ~\cite{kosiorek2019stacked} describes an unsupervised version of capsule networks, in which a neural encoder is used to infer the presence and poses of object capsules. 
+MIND~\cite{li2019multi} introduces capsules into recommendation areas and uses the capsule network to capture multiple interests of e-commerce users based on dynamic routing mechanism, which is applicable for clustering past behaviors and extracting diverse interests. CARP~\cite{li2019capsule} firstly extracts the viewpoints and aspects from the user and item review documents and derives the representation of each logic unit based on its constituent viewpoint and aspect for rating prediction.
+

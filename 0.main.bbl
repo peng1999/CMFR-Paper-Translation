@@ -1,0 +1,755 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{61}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Adomavicius and Kwon}{Adomavicius and
+  Kwon}{2011}]%
+        {adomavicius2011improving}
+\bibfield{author}{\bibinfo{person}{Gediminas Adomavicius} {and}
+  \bibinfo{person}{YoungOk Kwon}.} \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{Improving aggregate recommendation diversity using
+  ranking-based techniques}.
+\newblock \bibinfo{journal}{\emph{TKDE}} \bibinfo{volume}{24},
+  \bibinfo{number}{5} (\bibinfo{year}{2011}), \bibinfo{pages}{896--911}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Bag, Ghadge, and Tiwari}{Bag
+  et~al\mbox{.}}{2019}]%
+        {bag2019integrated}
+\bibfield{author}{\bibinfo{person}{Sujoy Bag}, \bibinfo{person}{Abhijeet
+  Ghadge}, {and} \bibinfo{person}{Manoj~Kumar Tiwari}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{An integrated recommender system for improved
+  accuracy and aggregate diversity}.
+\newblock \bibinfo{journal}{\emph{Computers \& Industrial Engineering}}
+  \bibinfo{volume}{130} (\bibinfo{year}{2019}), \bibinfo{pages}{187--197}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Bahdanau, Cho, and Bengio}{Bahdanau
+  et~al\mbox{.}}{2014}]%
+        {bahdanau2014neural}
+\bibfield{author}{\bibinfo{person}{Dzmitry Bahdanau},
+  \bibinfo{person}{Kyunghyun Cho}, {and} \bibinfo{person}{Yoshua Bengio}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Neural machine translation by jointly learning to
+  align and translate}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1409.0473}}
+  (\bibinfo{year}{2014}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Bradley and Smyth}{Bradley and Smyth}{2001}]%
+        {bradley2001improving}
+\bibfield{author}{\bibinfo{person}{Keith Bradley} {and} \bibinfo{person}{Barry
+  Smyth}.} \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Improving recommendation diversity}. In
+  \bibinfo{booktitle}{\emph{AICS'01}}. Citeseer, \bibinfo{pages}{85--94}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Burt}{Burt}{1988}]%
+        {burt1988attention}
+\bibfield{author}{\bibinfo{person}{Peter~J Burt}.}
+  \bibinfo{year}{1988}\natexlab{}.
+\newblock \showarticletitle{Attention mechanisms for vision in a dynamic
+  world}. In \bibinfo{booktitle}{\emph{ICPR'88}}. IEEE,
+  \bibinfo{pages}{977--987}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Cen, Zou, Zhang, Yang, Zhou, and Tang}{Cen
+  et~al\mbox{.}}{2019}]%
+        {cen2019representation}
+\bibfield{author}{\bibinfo{person}{Yukuo Cen}, \bibinfo{person}{Xu Zou},
+  \bibinfo{person}{Jianwei Zhang}, \bibinfo{person}{Hongxia Yang},
+  \bibinfo{person}{Jingren Zhou}, {and} \bibinfo{person}{Jie Tang}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Representation learning for attributed multiplex
+  heterogeneous network}. In \bibinfo{booktitle}{\emph{KDD'19}}.
+  \bibinfo{pages}{1358--1368}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chen, Xu, Zhang, Tang, Cao, Qin, and Zha}{Chen
+  et~al\mbox{.}}{2018}]%
+        {chen2018sequential}
+\bibfield{author}{\bibinfo{person}{Xu Chen}, \bibinfo{person}{Hongteng Xu},
+  \bibinfo{person}{Yongfeng Zhang}, \bibinfo{person}{Jiaxi Tang},
+  \bibinfo{person}{Yixin Cao}, \bibinfo{person}{Zheng Qin}, {and}
+  \bibinfo{person}{Hongyuan Zha}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Sequential recommendation with user memory
+  networks}. In \bibinfo{booktitle}{\emph{WSDM'18}}. ACM,
+  \bibinfo{pages}{108--116}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Cheng, Wang, Ma, Sun, and Xiong}{Cheng
+  et~al\mbox{.}}{2017}]%
+        {cheng2017learning}
+\bibfield{author}{\bibinfo{person}{Peizhe Cheng}, \bibinfo{person}{Shuaiqiang
+  Wang}, \bibinfo{person}{Jun Ma}, \bibinfo{person}{Jiankai Sun}, {and}
+  \bibinfo{person}{Hui Xiong}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Learning to recommend accurate and diverse items}.
+  In \bibinfo{booktitle}{\emph{WWW'17}}. \bibinfo{pages}{183--192}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Covington, Adams, and Sargin}{Covington
+  et~al\mbox{.}}{2016}]%
+        {covington2016deep}
+\bibfield{author}{\bibinfo{person}{Paul Covington}, \bibinfo{person}{Jay
+  Adams}, {and} \bibinfo{person}{Emre Sargin}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Deep neural networks for youtube recommendations}.
+  In \bibinfo{booktitle}{\emph{RecSys'16}}. ACM, \bibinfo{pages}{191--198}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
+  et~al\mbox{.}}{2018}]%
+        {devlin2018bert}
+\bibfield{author}{\bibinfo{person}{Jacob Devlin}, \bibinfo{person}{Ming-Wei
+  Chang}, \bibinfo{person}{Kenton Lee}, {and} \bibinfo{person}{Kristina
+  Toutanova}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Bert: Pre-training of deep bidirectional
+  transformers for language understanding}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1810.04805}}
+  (\bibinfo{year}{2018}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Di~Noia, Ostuni, Rosati, Tomeo, and
+  Di~Sciascio}{Di~Noia et~al\mbox{.}}{2014}]%
+        {di2014analysis}
+\bibfield{author}{\bibinfo{person}{Tommaso Di~Noia},
+  \bibinfo{person}{Vito~Claudio Ostuni}, \bibinfo{person}{Jessica Rosati},
+  \bibinfo{person}{Paolo Tomeo}, {and} \bibinfo{person}{Eugenio Di~Sciascio}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{An analysis of users' propensity toward diversity
+  in recommendations}. In \bibinfo{booktitle}{\emph{RecSys'14}}.
+  \bibinfo{pages}{285--288}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ebesu, Shen, and Fang}{Ebesu
+  et~al\mbox{.}}{2018}]%
+        {ebesu2018collaborative}
+\bibfield{author}{\bibinfo{person}{Travis Ebesu}, \bibinfo{person}{Bin Shen},
+  {and} \bibinfo{person}{Yi Fang}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Collaborative memory network for recommendation
+  systems}. In \bibinfo{booktitle}{\emph{SIGIR'18}}. ACM,
+  \bibinfo{pages}{515--524}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Gogna and Majumdar}{Gogna and
+  Majumdar}{2017}]%
+        {gogna2017balancing}
+\bibfield{author}{\bibinfo{person}{Anupriya Gogna} {and}
+  \bibinfo{person}{Angshul Majumdar}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Balancing accuracy and diversity in recommendations
+  using matrix completion framework}.
+\newblock \bibinfo{journal}{\emph{Knowledge-Based Systems}}
+  \bibinfo{volume}{125} (\bibinfo{year}{2017}), \bibinfo{pages}{83--95}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Guo, Tang, Ye, Li, and He}{Guo
+  et~al\mbox{.}}{2017}]%
+        {guo2017deepfm}
+\bibfield{author}{\bibinfo{person}{Huifeng Guo}, \bibinfo{person}{Ruiming
+  Tang}, \bibinfo{person}{Yunming Ye}, \bibinfo{person}{Zhenguo Li}, {and}
+  \bibinfo{person}{Xiuqiang He}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{DeepFM: a factorization-machine based neural
+  network for CTR prediction}. In \bibinfo{booktitle}{\emph{IJCAI'17}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hamilton, Ying, and Leskovec}{Hamilton
+  et~al\mbox{.}}{2017}]%
+        {hamilton2017inductive}
+\bibfield{author}{\bibinfo{person}{Will Hamilton}, \bibinfo{person}{Zhitao
+  Ying}, {and} \bibinfo{person}{Jure Leskovec}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Inductive representation learning on large graphs}.
+  In \bibinfo{booktitle}{\emph{NIPS'17}}. \bibinfo{pages}{1024--1034}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{He, Kang, and McAuley}{He
+  et~al\mbox{.}}{2017a}]%
+        {he2017translation}
+\bibfield{author}{\bibinfo{person}{Ruining He}, \bibinfo{person}{Wang-Cheng
+  Kang}, {and} \bibinfo{person}{Julian McAuley}.}
+  \bibinfo{year}{2017}\natexlab{a}.
+\newblock \showarticletitle{Translation-based recommendation}. In
+  \bibinfo{booktitle}{\emph{RecSys'17}}. ACM, \bibinfo{pages}{161--169}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{He and McAuley}{He and McAuley}{2016a}]%
+        {he2016fusing}
+\bibfield{author}{\bibinfo{person}{Ruining He} {and} \bibinfo{person}{Julian
+  McAuley}.} \bibinfo{year}{2016}\natexlab{a}.
+\newblock \showarticletitle{Fusing similarity models with markov chains for
+  sparse sequential recommendation}. In \bibinfo{booktitle}{\emph{ICDM'16}}.
+  IEEE, \bibinfo{pages}{191--200}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{He and McAuley}{He and McAuley}{2016b}]%
+        {he2016ups}
+\bibfield{author}{\bibinfo{person}{Ruining He} {and} \bibinfo{person}{Julian
+  McAuley}.} \bibinfo{year}{2016}\natexlab{b}.
+\newblock \showarticletitle{Ups and downs: Modeling the visual evolution of
+  fashion trends with one-class collaborative filtering}. In
+  \bibinfo{booktitle}{\emph{WWW'16}}. International World Wide Web Conferences
+  Steering Committee, \bibinfo{pages}{507--517}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{He and Chua}{He and Chua}{2017}]%
+        {he2017nfm}
+\bibfield{author}{\bibinfo{person}{Xiangnan He} {and} \bibinfo{person}{Tat-Seng
+  Chua}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Neural factorization machines for sparse predictive
+  analytics}. In \bibinfo{booktitle}{\emph{SIGIR'17}}. ACM,
+  \bibinfo{pages}{355--364}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{He, Liao, Zhang, Nie, Hu, and Chua}{He
+  et~al\mbox{.}}{2017b}]%
+        {he2017neural}
+\bibfield{author}{\bibinfo{person}{Xiangnan He}, \bibinfo{person}{Lizi Liao},
+  \bibinfo{person}{Hanwang Zhang}, \bibinfo{person}{Liqiang Nie},
+  \bibinfo{person}{Xia Hu}, {and} \bibinfo{person}{Tat-Seng Chua}.}
+  \bibinfo{year}{2017}\natexlab{b}.
+\newblock \showarticletitle{Neural collaborative filtering}. In
+  \bibinfo{booktitle}{\emph{WWW'17}}. International World Wide Web Conferences
+  Steering Committee, \bibinfo{pages}{173--182}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hidasi, Karatzoglou, Baltrunas, and
+  Tikk}{Hidasi et~al\mbox{.}}{2016}]%
+        {hidasi2015session}
+\bibfield{author}{\bibinfo{person}{Bal{\'a}zs Hidasi},
+  \bibinfo{person}{Alexandros Karatzoglou}, \bibinfo{person}{Linas Baltrunas},
+  {and} \bibinfo{person}{Domonkos Tikk}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Session-based recommendations with recurrent neural
+  networks}. In \bibinfo{booktitle}{\emph{ICLR'16}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hinton, Krizhevsky, and Wang}{Hinton
+  et~al\mbox{.}}{2011}]%
+        {hinton2011transforming}
+\bibfield{author}{\bibinfo{person}{Geoffrey~E Hinton}, \bibinfo{person}{Alex
+  Krizhevsky}, {and} \bibinfo{person}{Sida~D Wang}.}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{Transforming auto-encoders}. In
+  \bibinfo{booktitle}{\emph{ICANN'11}}. Springer, \bibinfo{pages}{44--51}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{J{\"a}rvelin and
+  Kek{\"a}l{\"a}inen}{J{\"a}rvelin and Kek{\"a}l{\"a}inen}{2000}]%
+        {jarvelin2000ir}
+\bibfield{author}{\bibinfo{person}{Kalervo J{\"a}rvelin} {and}
+  \bibinfo{person}{Jaana Kek{\"a}l{\"a}inen}.} \bibinfo{year}{2000}\natexlab{}.
+\newblock \showarticletitle{IR evaluation methods for retrieving highly
+  relevant documents}. In \bibinfo{booktitle}{\emph{SIGIR'00}}. ACM,
+  \bibinfo{pages}{41--48}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Jean, Cho, Memisevic, and Bengio}{Jean
+  et~al\mbox{.}}{2015}]%
+        {jean2014using}
+\bibfield{author}{\bibinfo{person}{S{\'e}bastien Jean},
+  \bibinfo{person}{Kyunghyun Cho}, \bibinfo{person}{Roland Memisevic}, {and}
+  \bibinfo{person}{Yoshua Bengio}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{On using very large target vocabulary for neural
+  machine translation}.
+\newblock \bibinfo{journal}{\emph{ACL'15}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Johnson, Douze, and J{\'e}gou}{Johnson
+  et~al\mbox{.}}{2017}]%
+        {JDH17}
+\bibfield{author}{\bibinfo{person}{Jeff Johnson}, \bibinfo{person}{Matthijs
+  Douze}, {and} \bibinfo{person}{Herv{\'e} J{\'e}gou}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Billion-scale similarity search with GPUs}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1702.08734}}
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kalaivanan and Vengatesan}{Kalaivanan and
+  Vengatesan}{2013}]%
+        {kalaivanan2013recommendation}
+\bibfield{author}{\bibinfo{person}{M Kalaivanan} {and} \bibinfo{person}{K
+  Vengatesan}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Recommendation system based on statistical analysis
+  of ranking from user}. In \bibinfo{booktitle}{\emph{ICICES'13}}. IEEE,
+  \bibinfo{pages}{479--484}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kang and McAuley}{Kang and McAuley}{2018}]%
+        {kang2018self}
+\bibfield{author}{\bibinfo{person}{Wang-Cheng Kang} {and}
+  \bibinfo{person}{Julian McAuley}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Self-attentive sequential recommendation}. In
+  \bibinfo{booktitle}{\emph{ICDM'18}}. IEEE, \bibinfo{pages}{197--206}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Karypis}{Karypis}{2001}]%
+        {karypis2001evaluation}
+\bibfield{author}{\bibinfo{person}{George Karypis}.}
+  \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Evaluation of item-based top-n recommendation
+  algorithms}. In \bibinfo{booktitle}{\emph{CIKM'01}}. ACM,
+  \bibinfo{pages}{247--254}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kingma and Ba}{Kingma and Ba}{2014}]%
+        {kingma2014adam}
+\bibfield{author}{\bibinfo{person}{Diederik~P Kingma} {and}
+  \bibinfo{person}{Jimmy Ba}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Adam: A method for stochastic optimization}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1412.6980}}
+  (\bibinfo{year}{2014}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Koren, Bell, and Volinsky}{Koren
+  et~al\mbox{.}}{2009}]%
+        {koren2009matrix}
+\bibfield{author}{\bibinfo{person}{Yehuda Koren}, \bibinfo{person}{Robert
+  Bell}, {and} \bibinfo{person}{Chris Volinsky}.}
+  \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Matrix factorization techniques for recommender
+  systems}.
+\newblock \bibinfo{journal}{\emph{Computer}} \bibinfo{number}{8}
+  (\bibinfo{year}{2009}), \bibinfo{pages}{30--37}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Li, Liu, Wu, Xu, Huang, Zhao, Kang, Chen, Li,
+  and Lee}{Li et~al\mbox{.}}{2019a}]%
+        {li2019multi}
+\bibfield{author}{\bibinfo{person}{Chao Li}, \bibinfo{person}{Zhiyuan Liu},
+  \bibinfo{person}{Mengmeng Wu}, \bibinfo{person}{Yuchi Xu},
+  \bibinfo{person}{Pipei Huang}, \bibinfo{person}{Huan Zhao},
+  \bibinfo{person}{Guoliang Kang}, \bibinfo{person}{Qiwei Chen},
+  \bibinfo{person}{Wei Li}, {and} \bibinfo{person}{Dik~Lun Lee}.}
+  \bibinfo{year}{2019}\natexlab{a}.
+\newblock \showarticletitle{Multi-Interest Network with Dynamic Routing for
+  Recommendation at Tmall}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1904.08030}}
+  (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Li, Quan, Peng, Qi, Deng, and Wu}{Li
+  et~al\mbox{.}}{2019b}]%
+        {li2019capsule}
+\bibfield{author}{\bibinfo{person}{Chenliang Li}, \bibinfo{person}{Cong Quan},
+  \bibinfo{person}{Li Peng}, \bibinfo{person}{Yunwei Qi},
+  \bibinfo{person}{Yuming Deng}, {and} \bibinfo{person}{Libing Wu}.}
+  \bibinfo{year}{2019}\natexlab{b}.
+\newblock \showarticletitle{A Capsule Network for Recommendation and Explaining
+  What You Like and Dislike}. In \bibinfo{booktitle}{\emph{SIGIR'19}}. ACM,
+  \bibinfo{pages}{275--284}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lian, Zhou, Zhang, Chen, Xie, and Sun}{Lian
+  et~al\mbox{.}}{2018}]%
+        {lian2018xdeepfm}
+\bibfield{author}{\bibinfo{person}{Jianxun Lian}, \bibinfo{person}{Xiaohuan
+  Zhou}, \bibinfo{person}{Fuzheng Zhang}, \bibinfo{person}{Zhongxia Chen},
+  \bibinfo{person}{Xing Xie}, {and} \bibinfo{person}{Guangzhong Sun}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{xDeepFM: Combining explicit and implicit feature
+  interactions for recommender systems}. In \bibinfo{booktitle}{\emph{KDD'18}}.
+  ACM, \bibinfo{pages}{1754--1763}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Liang, Krishnan, Hoffman, and Jebara}{Liang
+  et~al\mbox{.}}{2018}]%
+        {liang2018variational}
+\bibfield{author}{\bibinfo{person}{Dawen Liang}, \bibinfo{person}{Rahul~G
+  Krishnan}, \bibinfo{person}{Matthew~D Hoffman}, {and} \bibinfo{person}{Tony
+  Jebara}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Variational autoencoders for collaborative
+  filtering}. In \bibinfo{booktitle}{\emph{WWW'18}}. \bibinfo{pages}{689--698}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lin, Feng, Santos, Yu, Xiang, Zhou, and
+  Bengio}{Lin et~al\mbox{.}}{2017}]%
+        {lin2017structured}
+\bibfield{author}{\bibinfo{person}{Zhouhan Lin}, \bibinfo{person}{Minwei Feng},
+  \bibinfo{person}{Cicero Nogueira~dos Santos}, \bibinfo{person}{Mo Yu},
+  \bibinfo{person}{Bing Xiang}, \bibinfo{person}{Bowen Zhou}, {and}
+  \bibinfo{person}{Yoshua Bengio}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{A structured self-attentive sentence embedding}. In
+  \bibinfo{booktitle}{\emph{ICLR'17}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lv, Jin, Yu, Sun, Lin, Yang, and Ng}{Lv
+  et~al\mbox{.}}{2019}]%
+        {lv2019sdm}
+\bibfield{author}{\bibinfo{person}{Fuyu Lv}, \bibinfo{person}{Taiwei Jin},
+  \bibinfo{person}{Changlong Yu}, \bibinfo{person}{Fei Sun},
+  \bibinfo{person}{Quan Lin}, \bibinfo{person}{Keping Yang}, {and}
+  \bibinfo{person}{Wilfred Ng}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{SDM: Sequential deep matching model for online
+  large-scale recommender system}. In \bibinfo{booktitle}{\emph{CIKM'19}}.
+  \bibinfo{pages}{2635--2643}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ma, Zhou, Cui, Yang, and Zhu}{Ma
+  et~al\mbox{.}}{2019}]%
+        {ma2019learning}
+\bibfield{author}{\bibinfo{person}{Jianxin Ma}, \bibinfo{person}{Chang Zhou},
+  \bibinfo{person}{Peng Cui}, \bibinfo{person}{Hongxia Yang}, {and}
+  \bibinfo{person}{Wenwu Zhu}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Learning disentangled representations for
+  recommendation}. In \bibinfo{booktitle}{\emph{NIPS'19}}.
+  \bibinfo{pages}{5712--5723}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Marlin}{Marlin}{2004}]%
+        {marlin2004collaborative}
+\bibfield{author}{\bibinfo{person}{Benjamin Marlin}.}
+  \bibinfo{year}{2004}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Collaborative filtering: A machine learning
+  perspective}}.
+\newblock \bibinfo{publisher}{University of Toronto Toronto}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{McAuley, Targett, Shi, and Van
+  Den~Hengel}{McAuley et~al\mbox{.}}{2015}]%
+        {mcauley2015image}
+\bibfield{author}{\bibinfo{person}{Julian McAuley},
+  \bibinfo{person}{Christopher Targett}, \bibinfo{person}{Qinfeng Shi}, {and}
+  \bibinfo{person}{Anton Van Den~Hengel}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Image-based recommendations on styles and
+  substitutes}. In \bibinfo{booktitle}{\emph{SIGIR'15}}. ACM,
+  \bibinfo{pages}{43--52}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Niemann and Wolpers}{Niemann and
+  Wolpers}{2013}]%
+        {niemann2013new}
+\bibfield{author}{\bibinfo{person}{Katja Niemann} {and} \bibinfo{person}{Martin
+  Wolpers}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{A new collaborative filtering approach for
+  increasing the aggregate diversity of recommender systems}. In
+  \bibinfo{booktitle}{\emph{KDD'13}}. \bibinfo{pages}{955--963}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Panniello, Tuzhilin, and
+  Gorgoglione}{Panniello et~al\mbox{.}}{2014}]%
+        {panniello2014comparing}
+\bibfield{author}{\bibinfo{person}{Umberto Panniello},
+  \bibinfo{person}{Alexander Tuzhilin}, {and} \bibinfo{person}{Michele
+  Gorgoglione}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Comparing context-aware recommender systems in
+  terms of accuracy and diversity}.
+\newblock \bibinfo{journal}{\emph{UMUAI}} \bibinfo{volume}{24},
+  \bibinfo{number}{1-2} (\bibinfo{year}{2014}), \bibinfo{pages}{35--65}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Pi, Bian, Zhou, Zhu, and Gai}{Pi
+  et~al\mbox{.}}{2019}]%
+        {pi2019practice}
+\bibfield{author}{\bibinfo{person}{Qi Pi}, \bibinfo{person}{Weijie Bian},
+  \bibinfo{person}{Guorui Zhou}, \bibinfo{person}{Xiaoqiang Zhu}, {and}
+  \bibinfo{person}{Kun Gai}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Practice on long sequential user behavior modeling
+  for click-through rate prediction}. In \bibinfo{booktitle}{\emph{KDD'19}}.
+  \bibinfo{pages}{2671--2679}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Qin and Zhu}{Qin and Zhu}{2013}]%
+        {qin2013promoting}
+\bibfield{author}{\bibinfo{person}{Lijing Qin} {and} \bibinfo{person}{Xiaoyan
+  Zhu}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Promoting diversity in recommendation by entropy
+  regularizer}. In \bibinfo{booktitle}{\emph{IJCAI'13}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Rendle}{Rendle}{2010}]%
+        {rendle2010factorization}
+\bibfield{author}{\bibinfo{person}{Steffen Rendle}.}
+  \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Factorization machines}. In
+  \bibinfo{booktitle}{\emph{ICDM'10}}. IEEE, \bibinfo{pages}{995--1000}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Rendle, Freudenthaler, and
+  Schmidt-Thieme}{Rendle et~al\mbox{.}}{2010}]%
+        {rendle2010factorizing}
+\bibfield{author}{\bibinfo{person}{Steffen Rendle}, \bibinfo{person}{Christoph
+  Freudenthaler}, {and} \bibinfo{person}{Lars Schmidt-Thieme}.}
+  \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Factorizing personalized markov chains for
+  next-basket recommendation}. In \bibinfo{booktitle}{\emph{WWW'10}}. ACM,
+  \bibinfo{pages}{811--820}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sabour, Frosst, and Hinton}{Sabour
+  et~al\mbox{.}}{2017}]%
+        {sabour2017dynamic}
+\bibfield{author}{\bibinfo{person}{Sara Sabour}, \bibinfo{person}{Nicholas
+  Frosst}, {and} \bibinfo{person}{Geoffrey~E Hinton}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Dynamic routing between capsules}. In
+  \bibinfo{booktitle}{\emph{NIPS'17}}. \bibinfo{pages}{3856--3866}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sarwar, Karypis, Konstan, Riedl,
+  et~al\mbox{.}}{Sarwar et~al\mbox{.}}{2001}]%
+        {sarwar2001item}
+\bibfield{author}{\bibinfo{person}{Badrul~Munir Sarwar},
+  \bibinfo{person}{George Karypis}, \bibinfo{person}{Joseph~A Konstan},
+  \bibinfo{person}{John Riedl}, {et~al\mbox{.}}}
+  \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Item-based collaborative filtering recommendation
+  algorithms.}
+\newblock \bibinfo{journal}{\emph{WWW'01}} (\bibinfo{year}{2001}),
+  \bibinfo{pages}{285--295}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Schafer, Frankowski, Herlocker, and
+  Sen}{Schafer et~al\mbox{.}}{2007}]%
+        {schafer2007collaborative}
+\bibfield{author}{\bibinfo{person}{J~Ben Schafer}, \bibinfo{person}{Dan
+  Frankowski}, \bibinfo{person}{Jon Herlocker}, {and} \bibinfo{person}{Shilad
+  Sen}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{Collaborative filtering recommender systems}.
+\newblock In \bibinfo{booktitle}{\emph{The adaptive web}}.
+  \bibinfo{publisher}{Springer}, \bibinfo{pages}{291--324}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Slaney and White}{Slaney and White}{2006}]%
+        {slaney2006measuring}
+\bibfield{author}{\bibinfo{person}{Malcolm Slaney} {and}
+  \bibinfo{person}{William White}.} \bibinfo{year}{2006}\natexlab{}.
+\newblock \showarticletitle{Measuring playlist diversity for recommendation
+  systems}. In \bibinfo{booktitle}{\emph{AMCMM'06 workshop}}.
+  \bibinfo{pages}{77--82}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sun and Fisher}{Sun and Fisher}{2003}]%
+        {sun2003object}
+\bibfield{author}{\bibinfo{person}{Yaoru Sun} {and} \bibinfo{person}{Robert
+  Fisher}.} \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{Object-based visual attention for computer vision}.
+\newblock \bibinfo{journal}{\emph{Artificial intelligence}}
+  \bibinfo{volume}{146}, \bibinfo{number}{1} (\bibinfo{year}{2003}),
+  \bibinfo{pages}{77--123}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
+  Gomez, Kaiser, and Polosukhin}{Vaswani et~al\mbox{.}}{2017}]%
+        {vaswani2017attention}
+\bibfield{author}{\bibinfo{person}{Ashish Vaswani}, \bibinfo{person}{Noam
+  Shazeer}, \bibinfo{person}{Niki Parmar}, \bibinfo{person}{Jakob Uszkoreit},
+  \bibinfo{person}{Llion Jones}, \bibinfo{person}{Aidan~N Gomez},
+  \bibinfo{person}{{\L}ukasz Kaiser}, {and} \bibinfo{person}{Illia
+  Polosukhin}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Attention is all you need}. In
+  \bibinfo{booktitle}{\emph{NIPS'17}}. \bibinfo{pages}{5998--6008}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wang, Guo, Lan, Xu, Wan, and Cheng}{Wang
+  et~al\mbox{.}}{2015}]%
+        {wang2015learning}
+\bibfield{author}{\bibinfo{person}{Pengfei Wang}, \bibinfo{person}{Jiafeng
+  Guo}, \bibinfo{person}{Yanyan Lan}, \bibinfo{person}{Jun Xu},
+  \bibinfo{person}{Shengxian Wan}, {and} \bibinfo{person}{Xueqi Cheng}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Learning hierarchical representation model for
+  nextbasket recommendation}. In \bibinfo{booktitle}{\emph{SIGIR'15}}. ACM,
+  \bibinfo{pages}{403--412}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wang, Fu, Fu, and Wang}{Wang
+  et~al\mbox{.}}{2017}]%
+        {wang2017deep}
+\bibfield{author}{\bibinfo{person}{Ruoxi Wang}, \bibinfo{person}{Bin Fu},
+  \bibinfo{person}{Gang Fu}, {and} \bibinfo{person}{Mingliang Wang}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Deep \& cross network for ad click predictions}. In
+  \bibinfo{booktitle}{\emph{ADKDD'17}}. ACM, \bibinfo{pages}{12}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wu, Ahmed, Beutel, Smola, and Jing}{Wu
+  et~al\mbox{.}}{2017}]%
+        {wu2017recurrent}
+\bibfield{author}{\bibinfo{person}{Chao-Yuan Wu}, \bibinfo{person}{Amr Ahmed},
+  \bibinfo{person}{Alex Beutel}, \bibinfo{person}{Alexander~J Smola}, {and}
+  \bibinfo{person}{How Jing}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Recurrent recommender networks}. In
+  \bibinfo{booktitle}{\emph{WSDM'17}}. ACM, \bibinfo{pages}{495--503}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Xue, Dai, Zhang, Huang, and Chen}{Xue
+  et~al\mbox{.}}{2017}]%
+        {xue2017deep}
+\bibfield{author}{\bibinfo{person}{Hong-Jian Xue}, \bibinfo{person}{Xinyu Dai},
+  \bibinfo{person}{Jianbing Zhang}, \bibinfo{person}{Shujian Huang}, {and}
+  \bibinfo{person}{Jiajun Chen}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Deep Matrix Factorization Models for Recommender
+  Systems.}. In \bibinfo{booktitle}{\emph{IJCAI'17}}.
+  \bibinfo{pages}{3203--3209}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ying, He, Chen, Eksombatchai, Hamilton, and
+  Leskovec}{Ying et~al\mbox{.}}{2018}]%
+        {ying2018graph}
+\bibfield{author}{\bibinfo{person}{Rex Ying}, \bibinfo{person}{Ruining He},
+  \bibinfo{person}{Kaifeng Chen}, \bibinfo{person}{Pong Eksombatchai},
+  \bibinfo{person}{William~L Hamilton}, {and} \bibinfo{person}{Jure Leskovec}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Graph convolutional neural networks for web-scale
+  recommender systems}. In \bibinfo{booktitle}{\emph{KDD'18}}. ACM,
+  \bibinfo{pages}{974--983}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yu, Liu, Wu, Wang, and Tan}{Yu
+  et~al\mbox{.}}{2016}]%
+        {yu2016dynamic}
+\bibfield{author}{\bibinfo{person}{Feng Yu}, \bibinfo{person}{Qiang Liu},
+  \bibinfo{person}{Shu Wu}, \bibinfo{person}{Liang Wang}, {and}
+  \bibinfo{person}{Tieniu Tan}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{A dynamic recurrent model for next basket
+  recommendation}. In \bibinfo{booktitle}{\emph{SIGIR'16}}. ACM,
+  \bibinfo{pages}{729--732}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yu, Guo, Li, Wang, and Fan}{Yu
+  et~al\mbox{.}}{2019}]%
+        {yu2019recommendation}
+\bibfield{author}{\bibinfo{person}{Ting Yu}, \bibinfo{person}{Junpeng Guo},
+  \bibinfo{person}{Wenhua Li}, \bibinfo{person}{Harry~Jiannan Wang}, {and}
+  \bibinfo{person}{Ling Fan}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Recommendation with diversity: An adaptive
+  trust-aware model}.
+\newblock \bibinfo{journal}{\emph{Decision Support Systems}}
+  \bibinfo{volume}{123} (\bibinfo{year}{2019}), \bibinfo{pages}{113073}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhou, Bai, Song, Liu, Zhao, Chen, and
+  Gao}{Zhou et~al\mbox{.}}{2018a}]%
+        {zhou2018atrank}
+\bibfield{author}{\bibinfo{person}{Chang Zhou}, \bibinfo{person}{Jinze Bai},
+  \bibinfo{person}{Junshuai Song}, \bibinfo{person}{Xiaofei Liu},
+  \bibinfo{person}{Zhengchao Zhao}, \bibinfo{person}{Xiusi Chen}, {and}
+  \bibinfo{person}{Jun Gao}.} \bibinfo{year}{2018}\natexlab{a}.
+\newblock \showarticletitle{Atrank: An attention-based user behavior modeling
+  framework for recommendation}. In \bibinfo{booktitle}{\emph{AAAI'18}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhou, Zhu, Song, Fan, Zhu, Ma, Yan, Jin, Li,
+  and Gai}{Zhou et~al\mbox{.}}{2018b}]%
+        {zhou2018deep}
+\bibfield{author}{\bibinfo{person}{Guorui Zhou}, \bibinfo{person}{Xiaoqiang
+  Zhu}, \bibinfo{person}{Chenru Song}, \bibinfo{person}{Ying Fan},
+  \bibinfo{person}{Han Zhu}, \bibinfo{person}{Xiao Ma},
+  \bibinfo{person}{Yanghui Yan}, \bibinfo{person}{Junqi Jin},
+  \bibinfo{person}{Han Li}, {and} \bibinfo{person}{Kun Gai}.}
+  \bibinfo{year}{2018}\natexlab{b}.
+\newblock \showarticletitle{Deep interest network for click-through rate
+  prediction}. In \bibinfo{booktitle}{\emph{KDD'18}}. ACM,
+  \bibinfo{pages}{1059--1068}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhu, Li, Zhang, Li, He, Li, and Gai}{Zhu
+  et~al\mbox{.}}{2018}]%
+        {zhu2018learning}
+\bibfield{author}{\bibinfo{person}{Han Zhu}, \bibinfo{person}{Xiang Li},
+  \bibinfo{person}{Pengye Zhang}, \bibinfo{person}{Guozheng Li},
+  \bibinfo{person}{Jie He}, \bibinfo{person}{Han Li}, {and}
+  \bibinfo{person}{Kun Gai}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Learning tree-based deep model for recommender
+  systems}. In \bibinfo{booktitle}{\emph{KDD'18}}. ACM,
+  \bibinfo{pages}{1079--1088}.
+\newblock
+
+
+\end{thebibliography}
