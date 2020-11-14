@@ -227,7 +227,7 @@
 \fi
 \ClassInfo{\@classname}{Using fontsize \ACM@fontsize}
 \LoadClass[\ACM@fontsize, reqno]{amsart}
-\RequirePackage{microtype}
+%% \RequirePackage{microtype}
 \RequirePackage{etoolbox}
 \RequirePackage{booktabs}
 \RequirePackage{refcount}

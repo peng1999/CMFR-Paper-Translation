@@ -24,6 +24,8 @@
 %% The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
 
+\usepackage[scheme=plain]{ctex}
+\renewcommand{\abstractname}{摘要}
 \usepackage{booktabs} % For formal tables
 % \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{algorithmic}
@@ -151,6 +153,7 @@
 \footnotetext[1]{Hongxia Yang and Jie Tang are the corresponding authors.}
 \renewcommand{\thefootnote}{\arabic{footnote}}
 
+中文
 Recently, neural networks have been widely used in e-commerce recommender systems, owing to the rapid development of deep learning. 
 We formalize the recommender system as a sequential recommendation problem, intending to predict the next items that the user might be interacted with. 
 Recent works usually give an overall embedding from a user's behavior sequence. However, a unified user embedding cannot reflect the user's multiple interests during a period. 
