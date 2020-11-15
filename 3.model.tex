@@ -39,19 +39,19 @@
 假设我们有一组用户 $u\in \mathcal{U}$ 和一组项目 $i\in \mathcal{I}$. 对于每个用户，我们都有一系列用户历史行为 $(e^{(u)}_{1}, e^{(u)}_{2}, \cdots, e^{(u)}_{n})$，按出现时间排序。$e^{(u)}_{t}$ 记录用户交互的第 $t^{th}$ 项。给定历史交互，\textit{顺序推荐}问题指预测用户可能会与之交互的下一个项目。
 表~\ref{tab:notation} 中概述了用到的符号.
 
-In practice, due to the strict requirements of latency and performance, industrial recommender systems usually consist of two stages, the matching stage and the ranking stage. The matching stage corresponds to retrieving top-N candidate items, while the ranking stage is used for sorting the candidate items by more precise scores. Our paper mainly focuses on improving the effectiveness in the matching stage. In the following parts of this section, we will introduce our controllable multi-interest framework and illustrate the significance of our framework for the \textit{sequential recommendation} problem. % The overview of our models can be seen in Figure~\ref{fig:capsule}.
+实际上，由于对延迟和性能的严格要求，工业推荐系统通常包括两个阶段，即匹配阶段和排名阶段。匹配阶段对应于检索前N个候选项目，而排名阶段用于按更精确的分数对候选项目进行排序。本文主要关注在匹配阶段提高有效性。在本节的以下部分中，我们将介绍可控制的多兴趣框架，并说明该框架对于\textit{顺序推荐}问题的重要性. % The overview of our models can be seen in Figure~\ref{fig:capsule}.
 
 \begin{figure*}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/multi-interest-framework.pdf}
-    \caption{An overview of our model for the sequential recommendation. The input of our model is a user behavior sequence, which contains a list of item IDs. The item IDs are fed into the embedding layer and transformed into the item embeddings. Interest embeddings are generated through the multi-interest extraction module and can be then used for model training and serving. For model training, the nearest interest embedding to the target embedding will be chosen to compute the sampled softmax loss. For serving, each interest embedding will independently retrieve top-N nearest items, which are then fed into the aggregation module. The aggregation module generates the overall top-N items by a controllable procedure that balances the recommendation accuracy and diversity. }
+    \caption{顺序推荐模型的概述。我们模型的输入是用户行为序列，其中包含项ID的列表。该项目ID被送入嵌入层，并转化到该项目的嵌入。 兴趣嵌入是通过多兴趣提取模块生成的，然后可用于模型训练和服务。对于模型训练，将选择与目标嵌入最接近的兴趣嵌入来计算采样的softmax损失。为了提供服务，每个兴趣嵌入都将独立检索前N个最近的项目，然后将其馈入聚合模块。聚合模块通过可控制的过程来生成总体前N个项目，从而平衡推荐准确性和多样性。 }
     \label{fig:capsule_matching}
 \end{figure*}
 
-\subsection{Multi-Interest Framework}
-As the item pools of industrial recommender systems usually consist of millions or even billions of items, the matching stage plays a crucial role in recommender systems. Specifically, the matching model first computes user embeddings from user historical behaviors and then retrieves a candidate set of items for each user based on the user embedding. With the help of fast K nearest neighbors (KNN) algorithm to select the closest items from the large-scale item pool to generate a candidate set for each user, we mainly focus on the computation of user embeddings. In other words, the decisive factor for the matching stage is the quality of user embeddings computed from user historical behaviors. 
+\subsection{多兴趣框架}
+作为工业推荐系统的项目池通常由数百万甚至数十亿的项目，匹配阶段起着推荐系统至关重要的作用。 具体而言，匹配模型首先根据用户的历史行为来计算用户嵌入，然后基于用户嵌入为每个用户检索一组候选项目。借助快速K近邻算法（KNN）从大型项目池中选择最接近的项目以为每个用户生成候选集，我们主要集中在用户嵌入的计算上。换句话说，根据用户历史行为计算出的用户嵌入质量是匹配阶段的决定性因素。
 
-Existing matching models usually use RNN\cite{hidasi2015session,wu2017recurrent} to compute embeddings for users, but most of them only generate a single embedding vector for each user. This suffers from the lack of expressiveness of a single embedding since real-world customers usually have several kinds of items in their minds and these items are often for different uses and vary a lot in categories. Such behaviors of real-world customers highlight the need to use multiple vectors to represent their multiple interests. Based on the observations, we propose a multi-interest framework for the sequential recommendation. The input of our framework is a user behavior sequence, which contains a list of item IDs representing the user's interactions with items in time order. The item IDs are fed into an embedding layer and transformed into item embeddings. A multi-interest extraction module receives item embeddings and generates multiple interests for each user.
+现有的匹配模型通常使用RNN\cite{hidasi2015session,wu2017recurrent}为用户计算嵌入，但是大多数模型仅为每个用户生成一个嵌入向量。由于现实世界中的客户通常会考虑几种商品，而这些商品通常用于不同的用途，并且类别差异很大，因此，这种单一嵌入的方式缺乏足够的表达能力。 现实世界中客户的这种行为突显了需要使用多个向量来表示多重兴趣的重要性。基于这些考虑，我们为顺序推荐提出了一个多兴趣框架。我们框架的输入是用户行为序列，其中包含项目ID的列表，这些ID代表用户按时间顺序与商品的交互。商品ID被馈送到嵌入层，并转换为商品嵌入。多兴趣提取模块接收项目嵌入，并为每个用户生成多个兴趣。
 
 %Interest capsules are generated through the dynamic routing method and can be then used for model training and online serving.
 
