@@ -56,31 +56,31 @@
 %Interest capsules are generated through the dynamic routing method and can be then used for model training and online serving.
 
 % RNN-based models~\cite{hidasi2015session,wu2017recurrent} are widely used in sequential recommendation. These models are effective for short-term user sequences~\cite{tang2019towards} but cannot capture long-term user interests from user sequences. 
-To build a multi-interest extraction module, there are many optional methods. In this paper, we explore two methods, dynamic routing method and self-attentive method, as our multi-interest extraction module. Our framework using a dynamic routing method or self-attentive method is named as \model-DR or \model-SA, respectively. 
+要构建多兴趣提取模块，有很多可选的方法。 在本文中，我们探索了两种方法，即动态路由方法和自我关注方法，作为我们的多兴趣提取模块。 我们使用动态路由方法或自我关注方法的框架分别命名为 \model-DR 和 \model-SA.
 
-\vpara{Dynamic Routing.}
+\vpara{动态路由.}
 %\zc{The motivation to exploit multi-interest network as the long-range model should be highlighted.}
-We utilize a dynamic routing method as a multi-interest extraction module for user behavior sequences. The item embeddings of the user sequence can be viewed as primary capsules, and the multiple user interests can be seen as interest capsules. We use the dynamic routing method from CapsNet~\cite{sabour2017dynamic}. 
-We briefly introduce dynamic routing for computing vector inputs and outputs of capsules. A capsule is a group of neurons whose activity vectors represent the instantiation parameters of a specific type of entity such as an object or an object part~\cite{sabour2017dynamic}. The length of the output vector of a capsule represents the probability that the entity represented by the capsule is in the current input. Let $\mathbf{e}_i$ be the capsule $i$ of the primary layer. We then give the computation of the capsule $j$ of the next layer based on primary capsules. 
+我们将动态路由方法用作用户行为序列的多兴趣提取模块。 用户序列的项目嵌入可被视为主要胶囊，而多个用户兴趣可被视为兴趣胶囊。 我们使用CapsNet~\cite{sabour2017dynamic}中的动态路由方法. 
+简要地说，我们使用动态路由来计算胶囊向量输入和输出。胶囊是一组神经元，其活动矢量代表特定类型的实体（例如对象或对象部件~\cite{sabour2017dynamic}）的实例化参数。胶囊的输出矢量的长度表示由胶囊表示的实体在当前输入中的概率。令 $\mathbf{e}_i$ 为主要层的胶囊 $i$. 然后，我们基于主胶囊给出下一层胶囊 $j$ 的计算. 
 %How to calculate capsules $\mathbf{v}_j$ of the output layer? 
-We first compute the prediction vector as
+我们首先将预测向量计算为
 \begin{equation}
     \hat{\mathbf{e}}_{j|i}=\mathbf{W}_{ij} \mathbf{e}_{i},
 \end{equation}
-where $\mathbf{W}_{ij}$ is a transformation matrix. Then the total input to the capsule $j$ is the weighted sum over all prediction vectors $\hat{\mathbf{e}}_{j|i}$ as
+其中 $\mathbf{W}_{ij}$ 是转换矩阵。 那么，对胶囊 $j$ 的总输入就是所有预测矢量 $\hat{\mathbf{e}}_{j|i}$ 上的加权总和
 \begin{equation}
         \mathbf{s}_j = \sum_i c_{ij} \hat{\mathbf{e}}_{j|i},
 \end{equation}
-where $c_{ij}$ are the coupling coefficients that are determined by the iterative dynamic routing process. The coupling coefficients between capsule $i$ and all the capsules in the next layer should sum to 1. We use ``routing softmax'' to calculate the coupling coefficients using initial logits $b_{ij}$ as
+其中 $c_{ij}$ 是由迭代动态路由过程确定的耦合系数。胶囊 $i$ 与下一层中所有胶囊之间的耦合系数总和为1. 我们使用初始 logits $b_{ij}$ 和“routing softmax”来计算耦合系数
 \begin{equation}
     c_{ij}=\frac{\exp(b_{ij})}{\sum_k \exp(b_{ik})},
 \end{equation}
-where $b_{ij}$ represents the log prior probability that capsule $i$ should be coupled to capsule $j$. A non-linear "squashing" function~\cite{sabour2017dynamic} is proposed to ensure short vectors to get shrunk to almost zero length and long vectors to get shrunk to a length slightly below 1. Then the vector of of capsule $j$ is computed by
+其中 $b_{ij}$ 表示将胶囊 $i$ 和 $j$ 耦合的对数先验概率. 一个非线性“挤压”函数~\cite{sabour2017dynamic} 被提出来以确保短向量缩小到几乎为0的长度，长向量缩小到略小于1的长度. 胶囊 $j$ 的向量被计算为
 \begin{equation}
     \label{eqn:squash}
     \mathbf{v}_j = \operatorname{squash}(\mathbf{s}_j) =  \frac{\|\mathbf{s}_j\|^2}{1+\|\mathbf{s}_j\|^2} \frac{\mathbf{s}_j}{\|\mathbf{s}_j\|},
 \end{equation}
-where $\mathbf{s}_j$ is the total input of capsule $j$. To calculate the output capsules $\mathbf{v}_j$, we need to calculate the probability distribution based on the inner production of $\mathbf{v}_j$ and $\mathbf{e}_i$. The calculation of $\mathbf{v}_j$ relies on itself; thus, dynamic routing method is proposed to solve this problem. The whole dynamic routing process is listed in Algorithm~\ref{algo:dynamic_routing}. The output interest capsules of the user $u$ are then formed as a matrix $\mathbf{V}_u=[\mathbf{v}_1, ..., \mathbf{v}_K] \in \mathbb{R}^{d\times K}$ for downstream tasks.
+其中 $\mathbf{s}_j$ 是胶囊 $j$ 的总输入. 为了计算输出胶囊 $\mathbf{v}_j$, 我们需要根据 $\mathbf{v}_j$ 和 $\mathbf{e}_i$ 的内积来计算概率分布. $\mathbf{v}_j$ 的计算依赖与它自身；因此，动态路由方法被提出来解决这个问题. 整个动态路由过程在算法~\ref{algo:dynamic_routing}中给出. 然后用户 $u$ 的输出兴趣胶囊形成为下游任务的矩阵 $\mathbf{V}_u=[\mathbf{v}_1, ..., \mathbf{v}_K] \in \mathbb{R}^{d\times K}$.
 
 % In order to ensure the diversity between interest capsules, we introduce a penalty term similar with \cite{lin2017structured}.
 
@@ -90,7 +90,7 @@ where $\mathbf{s}_j$ is the total input of capsule $j$. To calculate the output 
 % where $||\cdot||_F$ denotes the Frobenius norm of a matrix. The penalty term $P$ will be multiplied by a coefficient and then added to the original loss (binary cross entropy loss or sampled softmax loss).
 
 \begin{algorithm}[t]
-	\caption{Dynamic Routing \label{algo:dynamic_routing}}
+	\caption{动态路由 \label{algo:dynamic_routing}}
 	\KwIn{primary capsules $\mathbf{e}_i$, iteration times $r$, number of interest capsules $K$}
 	\KwOut{interest capsules $\{\mathbf{v}_j, j=1,...,K\}$}
 	for each primary capsule $i$ and interest capsule $j$: initialize $b_{ij} = 0$. \\
