@@ -1589,6 +1589,7 @@
   \fi}
 \def\@formatdoi#1{\url{https://doi.org/#1}}
 \def\@copyrightpermission{%
+  本文由西北工业大学彭冠文(2018302271)和宁子谦(2018300410)翻译。
   \ifcase\acm@copyrightmode\relax % none
   \or % acmcopyright
    Permission to make digital or hard copies of all or part of this
