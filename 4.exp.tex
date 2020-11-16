@@ -45,7 +45,7 @@
     \label{tab:match_results}
 \end{table*}
 
-\subsection{Experimental Setup}
+\subsection{实验准备}
 
 % The matching stage plays a crucial role in recommendations due to the large-scale item pool of industrial recommender systems. 
 
@@ -214,7 +214,7 @@
   \end{tabular}
 \end{table}
 
-\subsection{Controllable Study}
+\subsection{可控性研究}
 \label{sec:control_study}
 % Our proposed model generates multiple embeddings for each user. 
 %A straightforward method is to sort the items based on their scores. However, each interest of a user is not equally important.
@@ -261,7 +261,7 @@
 % To show how each encoder contributes to the overall performance, we present the ablation study on our ranking model. We use T, S, L to denote the tiny-term, short-term, and long-term encoders, respectively. Our multi-interest capsule network can be viewed as a long-term encoder. We report the performance of our model using a different configuration of encoders as Table~\ref{tab:ctr_ablation} shows. In the Amazon dataset, our long-term encoder is a crucial part of the overall model. In the Taobao dataset, the combination of the tiny-term and short-term encoders obtains the best performance. The result shows that different encoders play different roles in the ranking task on different datasets. The difference between the two datasets may be caused by different types of behaviors. The Amazon dataset collects user review sequences, and the Taobao dataset collects user click sequences. The click behaviors rely more on tiny-term and short-term behaviors than review behaviors. From the ablation study, we can also see that mixture models obtain better performance than the single model. It is consistent with our motivation that a single model has limitations, and a mixture model is needed for the ranking stage of recommender systems. 
 
 
-\subsection{Industrial Results}
+\subsection{工业应用结果}
 
 \begin{table}
   \centering
