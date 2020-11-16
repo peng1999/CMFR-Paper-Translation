@@ -106,20 +106,20 @@
 \end{algorithm}
 
 
-\vpara{Self-Attentive Method.} 
-The self-attentive method~\cite{lin2017structured} can also be applied to our multi-interest extraction module. 
-Given the embeddings of user behaviors, $\mathbf{H}\in \mathbb{R}^{d\times n}$, where $n$ is the length of the user sequence, we use the self-attention mechanism to obtain a vector of weights $\mathbf{a} \in \mathbb{R}^{n}$:
+\vpara{自注意力方法.} 
+自注意力方法~\cite{lin2017structured} 同样也可以被运用与我们的多兴趣提取模块。
+给出用户的行为嵌入， $\mathbf{H}\in \mathbb{R}^{d\times n}$， 其中 $n$ 是用户序列的长度， 我们使用自注意力机制来获得一个权重向量 $\mathbf{a} \in \mathbb{R}^{n}$:
 \begin{equation}
     \mathbf{a} = \operatorname{softmax}(\mathbf{w}_{2}^\top \operatorname{tanh}(\mathbf{W}_{1} \mathbf{H}))^\top,
 \end{equation}
-\noindent where $\mathbf{w}_{2}$ and $\mathbf{W}_{1}$ are trainable parameters with size $d_a$ and $d_a \times d$, respectively. The superscript $\top$ denotes the transpose of the vector or the matrix. The vector $\mathbf{a}$ with size $n$ represents the attention weight of user behaviors. When we sum up the embeddings of user behaviors according to the attention weight, we can obtain a vector representation $\mathbf{v}_u = \mathbf{H} \mathbf{a}$ for the user. For the self-attentive method to make use of the order of user sequences, we add trainable positional embeddings~\cite{vaswani2017attention} to the input embeddings. The positional embeddings have the same dimension $d$ as the item embeddings and the two can be directly summed. 
+\noindent 其中 $\mathbf{w}_{2}$ 和 $\mathbf{W}_{1}$ 是可训练的参数，大小分别是为 $d_a$ 和 $d_a \times d$。 上标 $\top$ 表示向量或矩阵的转置。大小为 $n$ 的向量 $\mathbf{a}$ 表示用户行为的注意权重。 当根据注意力权重来总结用户行为的嵌入时，我们可以为用户获得向量表示 $\mathbf{v}_u = \mathbf{H} \mathbf{a}$ 。 对于利用用户序列顺序的自注意方法，我们将可训练的位置嵌入~\cite{vaswani2017attention} 添加到输入嵌入中。 位置嵌入与项目嵌入具有相同的尺寸 $d$ ，并且可以直接将两者相加。
 
-This vector representation focuses on and reflects a specific interest of the user $u$. To represent the overall interests of the user, we need multiple $\mathbf{v}_u$ from the user behaviors that focus on different interests. Thus we need to perform multiple times of attention. We extend the $\mathbf{w}_{2}$ into a $d_a$-by-$K$ matrix as $\mathbf{W}_{2}$. Then the attention vector $\mathbf{a}$ becomes an attention matrix $\mathbf{A}$ as
+该矢量表示关注并反映用户 $u$ 的特定兴趣。为了代表用户的整体兴趣，我们需要从关注不同兴趣的用户行为中获取多个 $\mathbf{v}_u$ 。因此，我们需要进行多次注意力。 我们将 $\mathbf{w}_{2}$ 扩展为 $\mathbf{W}_{2}$ 到 $d_a$-by-$K$ 的矩阵中。然后注意向量 $\mathbf{a}$ 变为注意矩阵 $\mathbf{A}$ 作为
 \begin{equation}
     \mathbf{A} = \operatorname{softmax}(\mathbf{W}_{2}^\top \operatorname{tanh}(\mathbf{W}_{1} \mathbf{H}))^\top.
 \end{equation}
 
-The final matrix of user interests $\mathbf{V}_u$ can be computed by
+用户兴趣最终矩阵 $\mathbf{V}_u$ 可以被这样计算
 \begin{equation}
     \label{eqn:sa}
     \mathbf{V}_u = \mathbf{H} \mathbf{A}.
@@ -127,8 +127,8 @@ The final matrix of user interests $\mathbf{V}_u$ can be computed by
 
 
 
-\vpara{Model Training.}
-After computing the interest embeddings from user behaviors through the multi-interest extraction module, we use an \textit{argmax} operator to choose a corresponding user embedding vector for a target item $i$:
+\vpara{模型训练.}
+在通过多兴趣提取模块根据用户行为计算出兴趣嵌入后，我们使用 \textit{argmax} 运算符为目标商品 $i$ 选择相应的用户嵌入向量：
 
 \begin{equation}
     \label{eqn:argmax}
@@ -138,26 +138,26 @@ After computing the interest embeddings from user behaviors through the multi-in
         \mathbf{v}_u = \mathbf{V}_u[:, \operatorname{argmax}(\mathbf{V}_u^\top \mathbf{e}_i)],
     \end{aligned}
 \end{equation}
-where $\mathbf{e}_i$ denotes the embedding of the target item $i$, and $\mathbf{V}_u$ is the matrix formed by user interest embeddings. %The function $\operatorname{pow}$ is the element-wise exponential function and $p$ is a hyperparameter which controls the attention distribution. 
+其中 $\mathbf{e}_i$ 表示目标项目 $i$ 的嵌入，而 $\mathbf{V}_u$ 是由用户兴趣嵌入形成的矩阵 %The function $\operatorname{pow}$ is the element-wise exponential function and $p$ is a hyperparameter which controls the attention distribution. 
 
-Given a training sample $(u,i)$ with the user embedding $\mathbf{v}_u$ and the item embedding $\mathbf{e}_i$, we can compute the likelihood of the user $u$ interacting with the item $i$ as
+给定训练样本 $(u,i)$ ，用户嵌入 $\mathbf{v}_u$ ，项目嵌入 $\mathbf{e}_i$ ，我们可以计算用户 $u$ 与物品 $i$ 交互的可能性：
 
 \begin{equation}
     \label{eqn:likelihood}
     P_\theta(i|u) = \frac{\exp(\mathbf{v}_u^\top \mathbf{e}_i)}{\sum_{k\in\mathcal{I}}\exp(\mathbf{v}_u^\top \mathbf{e}_k)}.
 \end{equation}
 
-The objective function of our model is to minimize the following negative log-likelihood
+我们模型的目标函数是最小化如下的负对数相似性
 
 \begin{equation}
     \label{eqn:loss}
     loss = \sum_{u\in \mathcal{U}} \sum_{i\in \mathcal{I}_u} -\log P_\theta(i|u).
 \end{equation}
 
-The sum operator of equation (\ref{eqn:likelihood}) is computationally expensive; thus, we use a sampled softmax technique~\cite{jean2014using, covington2016deep} to train our model.
+方程 (\ref{eqn:likelihood}) 的和运算消耗很大；因此，我们用了一个简单的softmax方法 ~\cite{jean2014using, covington2016deep} 来训练我们的模型
 
-\vpara{Online Serving.}
-For online serving, we use our multi-interest extraction module to compute multiple interests for each user. Each interest vector of a user can independently retrieve top-N items from the large-scale item pool by the nearest neighbor library such as Faiss~\cite{JDH17}. The items retrieved by multiple interests are fed into an aggregation module to determine the overall item candidates. Finally, the items with higher ranking scores will be recommended for users.
+\vpara{在线服务.}
+对于在线服务，我们使用多兴趣提取模块为每个用户计算多个兴趣。 用户的每个兴趣向量都可以通过最近的邻居库（例如Faiss〜\ cite {JDH17}）从大型项目池中独立检索前N个项目。 由多个兴趣检索的项目将被馈送到聚合模块中，以确定整体候选项目。 最后，将为用户推荐评分较高的项目。
 
 
 % \subsection{Multi-Interest Extraction Module}
@@ -175,32 +175,32 @@ For online serving, we use our multi-interest extraction module to compute multi
     \Return{$\mathcal{S}$}
 \end{algorithm}
 
-\subsection{Aggregation Module}
-After the multi-interest extraction module, we obtain multiple interest embeddings for each user based on his/her past behavior. Each interest embedding can independently retrieve top-N items based on the inner production proximity. But how to aggregate these items from different interests to obtain the overall top-N items? A basic and straightforward way is to merge and filter the items based on their inner production proximity with user interests, which can be formalized as
+\subsection{聚合模块}
+在多兴趣提取模块之后，我们根据每个用户的过去行为为其获取多个兴趣嵌入。 每个兴趣嵌入都可以根据内部生产邻近性独立检索前N个项目。 但是，如何汇总这些来自不同兴趣的项目以获取总体前N个项目？ 一种基本且直接的方法是根据商品的内部生产接近度和用户兴趣来合并和过滤商品，可以将其形式化为
 \begin{equation}
     f(u,i) = \max_{1\leq k\leq K}(\mathbf{e}_i^\top \mathbf{v}_u^{(k)}),
 \end{equation}
-where $\mathbf{v}_u^{(k)}$ is the $k$-th interest embedding of the user $u$. This is an effective method for the aggregation process to maximize the recommendation accuracy. However, it is not all about the accuracy of current recommender systems. People are more likely to be recommended with something new or something diverse. 
-The problem can be formulated in the following. Given a set $\mathcal{M}$ with $K\cdot N$ items retrieved from $K$ interests of a user $u$, find a set $\mathcal{S}$ with $N$ items such that a pre-defined value function is maximized. Our framework uses a controllable procedure to solve this problem. We use the following value function $Q(u,S)$ to balance the accuracy and diversity of the recommendation by a controllable factor $\lambda \geq 0$,
+其中 $\mathbf{v}_u^{(k)}$ 是用户 $u$ 的第k个兴趣嵌入。 这是用于聚合过程以最大化推荐准确性的有效方法。 但是，这不仅仅涉及当前推荐系统的准确性。 人们更有可能被推荐新颖或多样化的东西。
+问题可以被下面这样公式化。给定一个集合 $\mathcal{M}$ 带有 $K\cdot N$ 物品，获取自用户 $u$ 的 $K$ 个兴趣，找到一个集合 $\mathcal{S}$ 带有 $N$ 个项目使得预定义的值函数最大化。我们的框架使用可控制的过程来解决此问题。 我们使用以下值函数 $Q(u,S)$ 通过可控制因子 $\lambda \geq 0$ 平衡推荐的准确性和多样性，
 \begin{equation}
     Q(u,\mathcal{S}) = \sum_{i\in \mathcal{S}} f(u,i) + \lambda \sum_{i\in \mathcal{S}} \sum_{j\in \mathcal{S}} g(i,j).
 \end{equation}
-\noindent Here $g(i,j)$ is a diversity or dissimilarity function such as
+\noindent 这里 $g(i,j)$ 是多样性或不相似函数，例如
 \begin{equation}
     g(i,j) = \delta(\operatorname{CATE}(i) \neq \operatorname{CATE}(j)).
 \end{equation}
-where $\operatorname{CATE}(i)$ means the category of item $i$ and $\delta(\cdot)$ is an indicator function. 
-For the most accurate case, i.e., $\lambda=0$, we just use the above straightforward method to obtain the overall items. For the most diverse case, i.e., $\lambda=\infty$, the controllable module finds the most diverse items for users. We study the controllable factor in the Section~\ref{sec:control_study}. We propose a greedy inference algorithm to approximately maximize the value function $Q(u,S)$, which is listed in the Algorithm~\ref{algo:greedy_infer}.
+其中 $\operatorname{CATE}(i)$ 表示项目 $i$ 的类别， $\delta(\cdot)$ 是一个指示函数。
+对于最准确的情况，即 $\lambda=0$ ，我们仅使用上述简单方法即可获得整体商品。 对于最多样化的情况，即, $\lambda=\infty$ ，可控模块为用户找到最多样化的商品。 我们在~\ref{sec:control_study}中研究可控因素。 我们提出一种贪婪推断算法，以近似最大化值函数 $Q(u,S)$，该算法被列在~\ref{algo:greedy_infer}中。
 
 
-\subsection{Connections with Existing Models}
-We make a comparison between our model and existing models. 
+\subsection{与现有模型的连接}
+我们对我们的模型和现有模型做了一个比较
 
 \vpara{MIMN.}
-MIMN~\cite{pi2019practice}, a recent representative work for the ranking stage of recommendation, uses memory networks to capture user interests from long sequential behavior data. Both MIMN and our model target at the multiple interests of users. For very long sequential behaviors, a memory-based architecture may also be insufficient to capture the long-term interests of users. Compared with MIMN, our model utilizes the multi-interest extraction module to leverage multiple interests of users instead of a complicated memory network with memory utilization regularization and memory induction unit. 
+MIMN~\cite{pi2019practice}，推荐排名的最新代表作品是使用内存网络从长序列行为数据中捕获用户兴趣。 MIMN和我们的模型都针对用户的多重兴趣。 对于非常长的顺序行为，基于内存的体系结构可能也不足以捕获用户的长期利益。 与MIMN相比，我们的模型利用多兴趣提取模块来利用用户的多兴趣，而不是使用具有内存利用率正则化和内存归纳单元的复杂内存网络。
 
 \vpara{MIND.}
-MIND~\cite{li2019multi}, a recent representative work for the matching stage of recommendation, proposes a Behavior-to-Interest (B2I) dynamic routing for adaptively aggregating user's behaviors into interest representation vectors. Compared with MIND, \model-DR follows the original dynamic routing method used by CapsNet~\cite{sabour2017dynamic}, which can capture the sequential information of user behaviors. Our framework also explores a self-attentive method for multi-interest extraction. Moreover, our framework utilizes a controllable aggregation module to balance the recommendation accuracy and diversity based on users' multiple interests. 
+MIND~\cite{li2019multi}，是推荐匹配阶段的一项最新代表作品，提出了一种“兴趣转化为行为” (B2I) 动态路由，用于将用户的行为自适应地汇总到兴趣表示向量中。 与MIND相比， \model-DR 遵循 CapsNet~\cite{sabour2017dynamic}使用的原始动态路由方法，该方法可以捕获用户行为的顺序信息。 我们的框架还探索了一种多关注点提取的自我关注方法。 此外，我们的框架利用可控的汇总模块来根据用户的多重兴趣来平衡推荐的准确性和多样性。
 
 % Specifically, MIND uses fully shared transformation matrices, i.e., $\mathbf{W}_{ij}=\mathbf{W}$. In this situation, B2I dynamic routing ignores the item positions and considers the item sequence as an item set. However, the item positions are important for the sequential recommendation. 
 %In this situation, the logits $b_{ij}$ cannot be initialized as zeros and are randomly initialized as Gaussian distribution for each batch, which may impact the semantics of capsules. 
