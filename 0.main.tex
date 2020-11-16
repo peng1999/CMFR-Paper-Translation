@@ -24,6 +24,7 @@
 %% The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
 
+\usepackage[T1]{fontenc}
 \usepackage[scheme=plain]{ctex}
 \renewcommand{\abstractname}{摘要}
 \usepackage{booktabs} % For formal tables
@@ -158,7 +159,7 @@
 最近，由于深度学习的快速发展，神经网络已广泛用于电子商务推荐系统。
 我们将推荐器系统形式化为顺序推荐问题，旨在预测与用户进行交互的下一个项目。
 近期的研究工作通常会根据用户的行为顺序进行整体嵌入。但是，统一的用户嵌入无法反映该用户在一段时间内的多重兴趣。
-在本文中，我们为顺序推荐提出了一种新颖的可控多兴趣框架（\textbf{\textit{co}}ntrollable \textbf{\textit{m}}ulti-\textbf{\textit{i}}nterest framework for the sequential \textbf{\textit{rec}}ommendation），称为 \model。我们的多兴趣模块从用户行为序列中捕获多个兴趣，可将其用于从大型项目池中检索候选项目。然后将这些项目输入汇总模块以获取总体推荐。聚合模块利用可控因素来平衡推荐准确性和多样性。
+在本文中，针对顺序推荐，我们提出了一种新的可控多兴趣框架（\textbf{\textit{co}}ntrollable \textbf{\textit{m}}ulti-\textbf{\textit{i}}nterest framework for the sequential \textbf{\textit{rec}}ommendation），称为 \model。我们的多兴趣模块从用户行为序列中捕获多个兴趣，可将其用于从大型项目池中检索候选项目。然后将这些项目输入汇总模块以获取总体推荐。聚合模块利用可控因素来平衡推荐准确性和多样性。
 我们针对两个现实世界的数据集，亚马逊和淘宝，进行了顺序推荐的实验。实验结果表明，我们的框架相对于时下最先进的模型\footnote{代码可以在 \url{https://github.com/THUDM/ComiRec} 找到}有了显着改进。
 我们的框架也已成功部署在离线阿里巴巴分布式云平台上。
 \end{abstract}

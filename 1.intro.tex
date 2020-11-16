@@ -9,7 +9,7 @@
 % As we can see, the function of neural networks is to obtain the item candidates instead of giving the final recommendation list for each user.
 % \xz{The problem of neural-network-based models is that they require to run. If the number of users and items scale up tremendously, for example, billions of users and items, then there's still a large gap between embeddings and final recommendations.  } 
 % Excessive item pool with billions of items limits the effects of neural networks. 
-最近的一些工作利用图嵌入方法来获取用户和项目的表示，这些表示可用于下游应用程序。例如，PinSage~\cite{ying2018graph} 建立在 GraphSAGE~\cite{hamilton2017inductive} 的基础上，并将基于图卷积网络的方法应用于具有数十亿个节点和边的生产规模数据。GATNE~\cite{cen2019representation} 考虑了不同的用户行为类型，并利用异构图嵌入方法来学习用户和项目的表示。 但是，这种方法忽略了用户行为中的顺序信息，并且无法捕获相邻用户行为之间的相关性。 %Also, user behaviors are updated in real time, so recommendation methods should give real-time recommendations for all users. 
+最近的一些工作利用图嵌入方法来获取用户和项目的表示，这些表示可用于下游应用程序。例如，建立在 GraphSAGE~\cite{hamilton2017inductive} 基础上的 PinSage~\cite{ying2018graph}，并将基于图卷积网络的方法应用于具有数十亿个节点和边的生产规模数据。GATNE~\cite{cen2019representation} 考虑了不同的用户行为类型，并利用异构图嵌入方法来学习用户和项目的表示。 但是，这种方法忽略了用户行为中的顺序信息，并且无法捕获相邻用户行为之间的相关性。 %Also, user behaviors are updated in real time, so recommendation methods should give real-time recommendations for all users. 
 
 最近的研究~\cite{kang2018self,chen2018sequential,lv2019sdm} 将推荐系统形式化为顺序推荐问题。根据用户的行为历史记录，顺序推荐任务是预测他/她可能感兴趣的下一个项目。此任务反映了现实中的推荐系统的情况。许多最新模型可以根据其行为顺序为每个用户提供整体嵌入。但是，统一的用户嵌入很难代表多个兴趣。 例如，在图~\ref{fig:multiple_interest} 中，单击序列显示了Emma的三种不同兴趣。 作为一个现代女孩，Emma 对珠宝，手袋和化妆品感兴趣。 因此，在这段时间，她可能单击三个类别的项目。
 

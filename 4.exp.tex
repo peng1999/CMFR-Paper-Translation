@@ -49,13 +49,13 @@
 
 % The matching stage plays a crucial role in recommendations due to the large-scale item pool of industrial recommender systems. 
 
-我们在强泛化 ~\cite{marlin2004collaborative, liang2018variational, ma2019learning} 下评估所有方法的性能: 我们将所有用户按8：1：1的比例划分为训练/验证/测试集。我们使用训练用户的整个点击序列来训练模型。 为了进行评估，我们从验证和测试用户中提取用户行为的前80％，以通过预测剩余的20％用户行为，从经过训练的模型推断用户嵌入并计算指标。此设置比弱泛化要困难得多，在弱泛化中，在训练和评估过程中都使用用户的行为序列 ~\cite{liang2018variational}.
-详细地说，我们采用训练顺序推荐模型的通用设置。 假设用户 $u$ 行为顺序为 $(e_1^{(u)}, e_2^{(u)}, ..., e_k^{(u)}, ..., e_n^{(u)})$。 每个训练样本都使用 $u$ 的前 $k$ 个行为来预测第 $(k+1)$ 个行为，其中 $k=1,2,...,(n-1)$。
+我们在强泛化~\cite{marlin2004collaborative, liang2018variational, ma2019learning} 下评估所有方法的性能: 我们将所有用户按8：1：1的比例划分为训练/验证/测试集。我们使用训练用户的整个点击序列来训练模型。 为了进行评估，我们从验证和测试用户中提取用户行为的前80％，以通过预测剩余的20％用户行为，从经过训练的模型推断用户嵌入并计算指标。此设置比弱泛化要困难得多，在弱泛化中，在训练和评估过程中都使用用户的行为序列~\cite{liang2018variational}.
+详细地说，我们采用训练顺序推荐模型的通用设置。设用户 $u$ 行为顺序为 $(e_1^{(u)}, e_2^{(u)}, ..., e_k^{(u)}, ..., e_n^{(u)})$。 每个训练样本都使用 $u$ 的前 $k$ 个行为来预测第 $(k+1)$ 个行为，其中 $k=1,2,...,(n-1)$。
 
-\vpara{数据集.} 我们对两个具有挑战性的公共数据集进行了实验。 表~\ref{tab:match_stats}中显示了两个数据集的统计信息。
+\vpara{数据集.} 我们对两个具有挑战性的公共数据集进行了实验。表~\ref{tab:match_stats} 中显示了两个数据集的统计信息。
 
 \begin{itemize}
-    \item \textbf{Amazon}\footnote{\url{http://jmcauley.ucsd.edu/data/amazon/}} 由商品评论和来自亚马逊的元数据组成 ~\cite{mcauley2015image,he2016ups}. 在我们的实验中，我们使用Amazon数据集的 \textit{Books} 类别。 每个训练样本的长度为20。
+    \item \textbf{Amazon}\footnote{\url{http://jmcauley.ucsd.edu/data/amazon/}} 由来自亚马逊~\cite{mcauley2015image,he2016ups}商品评论和的元数据组成. 在我们的实验中，我们使用Amazon数据集的 \textit{Books} 类别。 每个训练样本的长度为20。
     % \item \red{\textbf{MovieLens 20M}\footnote{https://grouplens.org/datasets/movielens/} consists of 20M movie ratings, which is a stable benchmark dataset. 20 million ratings and 465,000 tag applications are applied to 27,000 movies by 138,000 users. ML-20M includes tag genome data with 12 million relevance scores across 1,100 tags.}
     % \item \red{\textbf{Netflix}\footnote{http://www.netflixprize.com/} is user-movie rating data constructed to support participants in the Netflix Prize. The movie rating files contain over 100 million ratings from 480 thousand randomly-chosen, anonymous Netflix customers over 17 thousand movies. The data were collected between October, 1998 and December, 2005 and reflect the distribution of all ratings received during this period. The date of each rating and the title and year of release for each movie id are also provided.
     % }
@@ -117,7 +117,7 @@
         \begin{equation}
             \operatorname{NDCG@N} = \frac{1}{Z}\operatorname{DCG@N} = \frac{1}{Z} \frac{1}{|\mathcal{U}|}\sum_{u\in\mathcal{U}}\sum_{k=1}^{N}\frac{\delta(\hat{i}_{u,k}\in \mathcal{I}_{u})}{\operatorname{log}_2(k+1)},
         \end{equation}
-        其中 $\hat{i}_{u,k}$ 表示用户 $u$ 的第 $k$ 个推荐项目， $Z$ 是一个标准化常数，表示理想的折现累积收益 (IDCG@N), 这是 DCG@N 的最大可能值。 
+        其中 $\hat{i}_{u,k}$ 表示用户 $u$ 的第 $k$ 个推荐项目，$Z$ 是标准化常数，表示理想的折现累积收益 (IDCG@N), 这是 DCG@N 的最大可能值。 
 \end{itemize}
 
 % \begin{figure*}
